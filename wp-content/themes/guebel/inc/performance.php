@@ -37,8 +37,8 @@ add_action( 'init', 'guebel_cleanup_head' );
 function guebel_disable_emoji_dns_prefetch( $urls, $relation_type ) {
 	if ( 'dns-prefetch' === $relation_type ) {
 		$urls = array_filter( $urls, function( $url ) {
-			return ! str_contains( $url, 'wp.org/images/core/emoji' )
-				&& ! str_contains( $url, 's.w.org/images/core/emoji' );
+			return false === strpos( $url, 'wp.org/images/core/emoji' )
+				&& false === strpos( $url, 's.w.org/images/core/emoji' );
 		} );
 	}
 	return $urls;
@@ -106,7 +106,7 @@ add_filter( 'wp_resource_hints', 'guebel_resource_hints', 10, 2 );
 function guebel_disable_self_pingbacks( &$links ) {
 	$home = home_url();
 	foreach ( $links as $l => $link ) {
-		if ( str_starts_with( $link, $home ) ) {
+		if ( 0 === strpos( $link, $home ) ) {
 			unset( $links[ $l ] );
 		}
 	}
