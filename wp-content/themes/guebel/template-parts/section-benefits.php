@@ -16,8 +16,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<div class="benefits-grid">
 			<div class="benefit-item animate-on-scroll">
 				<svg class="benefit-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
-				<h3 class="benefit-title"><?php esc_html_e( 'Secure Delivery', 'guebel' ); ?></h3>
-				<p class="benefit-text"><?php esc_html_e( 'Carefully packaged and delivered to your door with full tracking.', 'guebel' ); ?></p>
+				<h3 class="benefit-title"><?php esc_html_e( 'Free Shipping', 'guebel' ); ?></h3>
+				<p class="benefit-text"><?php esc_html_e( 'Free delivery on orders over 50 euros. Carefully packaged with full tracking.', 'guebel' ); ?></p>
 			</div>
 
 			<div class="benefit-item animate-on-scroll">

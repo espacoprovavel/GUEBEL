@@ -32,13 +32,13 @@ if ( ! $hero_image ) {
 	<div class="hero-overlay">
 		<div class="container">
 			<h1 class="hero-title animate-on-scroll">
-				<?php esc_html_e( 'Objects That Define Spaces', 'guebel' ); ?>
+				<?php esc_html_e( 'Vases for the Future', 'guebel' ); ?>
 			</h1>
 			<p class="hero-subtitle animate-on-scroll">
-				<?php esc_html_e( 'Discover our curated collection of contemporary decorative pieces, designed to elevate every interior.', 'guebel' ); ?>
+				<?php esc_html_e( 'Brighten your home and protect the planet with our 3D-printed pieces made from recycled plastics.', 'guebel' ); ?>
 			</p>
 			<a href="<?php echo esc_url( guebel_shop_url() ); ?>" class="btn btn--white btn--lg animate-on-scroll">
-				<?php esc_html_e( 'Explore Collection', 'guebel' ); ?>
+				<?php esc_html_e( 'Explore Shop', 'guebel' ); ?>
 			</a>
 		</div>
 	</div>

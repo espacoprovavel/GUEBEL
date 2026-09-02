@@ -27,10 +27,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 				<span class="section-eyebrow"><?php esc_html_e( 'Our Story', 'guebel' ); ?></span>
 				<h2 class="section-title"><?php esc_html_e( 'Design That Speaks', 'guebel' ); ?></h2>
 				<p class="section-text">
-					<?php esc_html_e( 'At Guebel, we believe every object tells a story. Our collection brings together contemporary design and artisanal craft, creating pieces that transform spaces into personal sanctuaries.', 'guebel' ); ?>
+					<?php esc_html_e( 'Brighten your home and protect the planet with our 3D-printed pieces. Made to order using recycled plastics with zero waste production.', 'guebel' ); ?>
 				</p>
 				<p class="section-text">
-					<?php esc_html_e( 'Each piece is carefully selected for its form, material quality, and ability to create atmosphere.', 'guebel' ); ?>
+					<?php esc_html_e( 'Each piece is carefully designed for its form, sustainability, and ability to create atmosphere in any space.', 'guebel' ); ?>
 				</p>
 				<a href="<?php echo esc_url( home_url( '/about/' ) ); ?>" class="rule-btn mt-8">
 					<?php esc_html_e( 'Discover More', 'guebel' ); ?>

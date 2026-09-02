@@ -2841,3 +2841,253 @@ select:focus-visible {
 		padding: 0;
 	}
 }
+
+
+/* ==========================================================================
+   25. CLUB PAGE
+   ========================================================================== */
+
+.club-benefits {
+	background: var(--color-bg-alt);
+}
+
+.club-benefit-card {
+	text-align: center;
+	padding: var(--space-12) var(--space-8);
+	background: var(--color-surface);
+	border: var(--border-width) solid var(--color-border-light);
+	transition: box-shadow var(--duration-normal) var(--ease-default),
+	            transform var(--duration-normal) var(--ease-default);
+}
+
+.club-benefit-card:hover {
+	box-shadow: var(--shadow-md);
+	transform: translateY(-4px);
+}
+
+.club-benefit-icon {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin: 0 auto var(--space-6);
+}
+
+.club-benefit-icon svg {
+	width: 48px;
+	height: 48px;
+	color: var(--color-primary);
+}
+
+.club-benefit-title {
+	font-family: var(--font-display);
+	font-size: var(--text-xl);
+	font-weight: var(--weight-regular);
+	margin-bottom: var(--space-4);
+}
+
+.club-benefit-text {
+	font-size: var(--text-sm);
+	color: var(--color-text-muted);
+	line-height: var(--leading-relaxed);
+}
+
+.club-cta-box {
+	background: var(--color-bg-alt);
+	padding: var(--space-20) var(--space-12);
+	border: var(--border-width) solid var(--color-border-light);
+	text-align: center;
+}
+
+@media (max-width: 640px) {
+	.club-cta-box {
+		padding: var(--space-12) var(--space-6);
+	}
+}
+
+.club-price {
+	display: flex;
+	align-items: baseline;
+	justify-content: center;
+	gap: var(--space-2);
+}
+
+.club-price-value {
+	font-family: var(--font-display);
+	font-size: var(--text-4xl);
+	font-weight: var(--weight-light);
+	color: var(--color-primary);
+}
+
+.club-price-value small {
+	font-size: 0.5em;
+}
+
+.club-price-period {
+	font-size: var(--text-sm);
+	color: var(--color-text-muted);
+}
+
+.club-features {
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-4);
+	max-width: 24rem;
+	margin-inline: auto;
+	text-align: left;
+}
+
+.club-features li {
+	display: flex;
+	align-items: center;
+	gap: var(--space-3);
+	font-size: var(--text-sm);
+	color: var(--color-text-muted);
+}
+
+.club-features li svg {
+	width: 18px;
+	height: 18px;
+	flex-shrink: 0;
+	color: var(--color-success);
+}
+
+.club-step {
+	text-align: center;
+	padding: var(--space-8);
+}
+
+.club-step-number {
+	display: block;
+	font-family: var(--font-display);
+	font-size: var(--text-4xl);
+	font-weight: var(--weight-light);
+	color: var(--color-border);
+	margin-bottom: var(--space-4);
+}
+
+.club-step-title {
+	font-family: var(--font-display);
+	font-size: var(--text-xl);
+	font-weight: var(--weight-regular);
+	margin-bottom: var(--space-4);
+}
+
+.club-step-text {
+	font-size: var(--text-sm);
+	color: var(--color-text-muted);
+	line-height: var(--leading-relaxed);
+}
+
+.club-divider {
+	width: 60px;
+	height: 1px;
+	background: oklch(1 0 0 / 0.2);
+	margin: var(--space-8) auto 0;
+}
+
+.club-how {
+	background: var(--color-bg-alt);
+}
+
+
+/* ==========================================================================
+   26. ABOUT PAGE VALUES
+   ========================================================================== */
+
+.about-values {
+	background: var(--color-bg-alt);
+}
+
+.about-value-card {
+	text-align: center;
+	padding: var(--space-12) var(--space-8);
+}
+
+.about-value-icon {
+	width: 48px;
+	height: 48px;
+	color: var(--color-primary);
+	margin: 0 auto var(--space-6);
+}
+
+.about-value-card h3 {
+	font-family: var(--font-display);
+	font-size: var(--text-xl);
+	font-weight: var(--weight-regular);
+	margin-bottom: var(--space-4);
+}
+
+.about-value-card p {
+	font-size: var(--text-sm);
+	color: var(--color-text-muted);
+	line-height: var(--leading-relaxed);
+}
+
+
+/* ==========================================================================
+   27. CONTACT PAGE ENHANCED
+   ========================================================================== */
+
+.contact-info {
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-8);
+}
+
+.contact-item {
+	display: flex;
+	align-items: flex-start;
+	gap: var(--space-4);
+}
+
+.contact-item-icon {
+	flex-shrink: 0;
+	width: 40px;
+	height: 40px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: var(--color-bg-alt);
+	border-radius: var(--radius-md);
+}
+
+.contact-item-icon svg {
+	width: 20px;
+	height: 20px;
+	color: var(--color-primary);
+}
+
+.contact-item-title {
+	font-family: var(--font-display);
+	font-size: var(--text-md);
+	font-weight: var(--weight-regular);
+	margin-bottom: var(--space-2);
+}
+
+.contact-item p {
+	font-size: var(--text-sm);
+	color: var(--color-text-muted);
+	line-height: var(--leading-relaxed);
+}
+
+.contact-item a {
+	color: var(--color-secondary);
+	text-decoration: underline;
+	text-underline-offset: 3px;
+}
+
+.contact-item a:hover {
+	opacity: 0.8;
+}
+
+.contact-form-wrap {
+	padding: var(--space-12);
+	background: var(--color-bg-alt);
+	border: var(--border-width) solid var(--color-border-light);
+}
+
+@media (max-width: 640px) {
+	.contact-form-wrap {
+		padding: var(--space-8) var(--space-6);
+	}
+}

@@ -41,7 +41,7 @@ if ( empty( $products ) ) {
 		<div class="text-center">
 			<span class="section-eyebrow"><?php esc_html_e( 'Curated Selection', 'guebel' ); ?></span>
 			<h2 class="shop-title"><?php esc_html_e( 'Featured Pieces', 'guebel' ); ?></h2>
-			<p class="shop-subtitle"><?php esc_html_e( 'Handpicked objects for contemporary spaces', 'guebel' ); ?></p>
+			<p class="shop-subtitle"><?php esc_html_e( 'Made to order, 3D printed from recycled plastics', 'guebel' ); ?></p>
 		</div>
 
 		<div class="product-grid">

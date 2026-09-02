@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: FAQ
+ * Template Name: Perguntas Frequentes
  * Template Post Type: page
  *
  * FAQ page template with accordion layout.
