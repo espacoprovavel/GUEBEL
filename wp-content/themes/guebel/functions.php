@@ -210,3 +210,43 @@ require get_template_directory() . '/inc/accessibility.php';
 if ( guebel_has_woocommerce() ) {
 	require get_template_directory() . '/inc/woocommerce.php';
 }
+
+/**
+ * Fallback functions when WooCommerce is not active.
+ */
+if ( ! function_exists( 'guebel_cart_url' ) ) {
+	function guebel_cart_url() {
+		return home_url( '/cart/' );
+	}
+}
+
+if ( ! function_exists( 'guebel_account_url' ) ) {
+	function guebel_account_url() {
+		return wp_login_url();
+	}
+}
+
+if ( ! function_exists( 'guebel_cart_count_markup' ) ) {
+	function guebel_cart_count_markup() {
+		echo '<span class="cart-count" data-cart-count>0</span>';
+	}
+}
+
+if ( ! function_exists( 'guebel_fallback_menu' ) ) {
+	function guebel_fallback_menu() {
+		echo '<ul>';
+		echo '<li><a href="' . esc_url( home_url( '/' ) ) . '">' . esc_html__( 'Home', 'guebel' ) . '</a></li>';
+		if ( guebel_has_woocommerce() ) {
+			echo '<li><a href="' . esc_url( guebel_shop_url() ) . '">' . esc_html__( 'Shop', 'guebel' ) . '</a></li>';
+		}
+		echo '<li><a href="' . esc_url( home_url( '/about/' ) ) . '">' . esc_html__( 'About', 'guebel' ) . '</a></li>';
+		echo '<li><a href="' . esc_url( home_url( '/contact/' ) ) . '">' . esc_html__( 'Contact', 'guebel' ) . '</a></li>';
+		echo '</ul>';
+	}
+}
+
+if ( ! function_exists( 'guebel_product_badges' ) ) {
+	function guebel_product_badges( $product = null ) {
+		return;
+	}
+}

@@ -21,11 +21,11 @@ if ( guebel_is_elementor_content() ) :
 		the_content();
 	endwhile;
 else :
-	$email    = get_theme_mod( 'guebel_contact_email', '' );
-	$phone    = get_theme_mod( 'guebel_contact_phone', '' );
-	$whatsapp = get_theme_mod( 'guebel_contact_whatsapp', '' );
-	$address  = get_theme_mod( 'guebel_contact_address', '' );
-	$hours    = get_theme_mod( 'guebel_contact_hours', '' );
+	$email    = get_theme_mod( 'guebel_email', '' );
+	$phone    = get_theme_mod( 'guebel_phone', '' );
+	$whatsapp = get_theme_mod( 'guebel_whatsapp', '' );
+	$address  = get_theme_mod( 'guebel_address', '' );
+	$hours    = get_theme_mod( 'guebel_hours', '' );
 ?>
 
 <section class="page-hero">

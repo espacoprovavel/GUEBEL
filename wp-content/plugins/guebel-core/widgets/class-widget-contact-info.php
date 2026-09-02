@@ -29,9 +29,9 @@ class Guebel_Widget_Contact_Info extends WP_Widget {
 			echo $args['before_title'] . esc_html( $title ) . $args['after_title'];
 		}
 
-		$email   = get_theme_mod( 'guebel_contact_email', '' );
-		$phone   = get_theme_mod( 'guebel_contact_phone', '' );
-		$address = get_theme_mod( 'guebel_contact_address', '' );
+		$email   = get_theme_mod( 'guebel_email', '' );
+		$phone   = get_theme_mod( 'guebel_phone', '' );
+		$address = get_theme_mod( 'guebel_address', '' );
 
 		echo '<ul class="contact-info-widget">';
 
