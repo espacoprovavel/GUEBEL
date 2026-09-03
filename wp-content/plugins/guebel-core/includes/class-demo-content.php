@@ -554,42 +554,67 @@ class Guebel_Demo_Content {
 		);
 
 		$product_ids = array();
+
+		// Prefer the WooCommerce CRUD API so products are fully registered
+		// (price/visibility lookup tables populated) and appear in the shop.
+		$use_crud = class_exists( 'WC_Product_Simple' );
+
 		foreach ( $products as $product_data ) {
-			$product_id = wp_insert_post(
-				array(
-					'post_title'   => $product_data['title'],
-					'post_content' => $product_data['description'],
-					'post_excerpt' => $product_data['short_desc'],
-					'post_status'  => 'publish',
-					'post_type'    => 'product',
-					'post_author'  => get_current_user_id(),
-				)
-			);
+			if ( $use_crud ) {
+				$product = new WC_Product_Simple();
+				$product->set_name( $product_data['title'] );
+				$product->set_status( 'publish' );
+				$product->set_catalog_visibility( 'visible' );
+				$product->set_description( $product_data['description'] );
+				$product->set_short_description( $product_data['short_desc'] );
+				$product->set_sku( $product_data['sku'] );
+				$product->set_regular_price( $product_data['price'] );
+				if ( ! empty( $product_data['sale_price'] ) ) {
+					$product->set_sale_price( $product_data['sale_price'] );
+				}
+				$product->set_manage_stock( false );
+				$product->set_stock_status( 'instock' );
 
-			if ( is_wp_error( $product_id ) ) {
-				continue;
+				if ( isset( $category_ids[ $product_data['cat_index'] ] ) ) {
+					$product->set_category_ids( array( (int) $category_ids[ $product_data['cat_index'] ] ) );
+				}
+
+				$product_id = $product->save();
+
+				if ( ! $product_id ) {
+					continue;
+				}
+			} else {
+				$product_id = wp_insert_post(
+					array(
+						'post_title'   => $product_data['title'],
+						'post_content' => $product_data['description'],
+						'post_excerpt' => $product_data['short_desc'],
+						'post_status'  => 'publish',
+						'post_type'    => 'product',
+						'post_author'  => get_current_user_id(),
+					)
+				);
+
+				if ( is_wp_error( $product_id ) ) {
+					continue;
+				}
+
+				wp_set_object_terms( $product_id, 'simple', 'product_type' );
+				if ( isset( $category_ids[ $product_data['cat_index'] ] ) ) {
+					wp_set_object_terms( $product_id, array( (int) $category_ids[ $product_data['cat_index'] ] ), 'product_cat' );
+				}
+				update_post_meta( $product_id, '_regular_price', $product_data['price'] );
+				update_post_meta( $product_id, '_price', ! empty( $product_data['sale_price'] ) ? $product_data['sale_price'] : $product_data['price'] );
+				if ( ! empty( $product_data['sale_price'] ) ) {
+					update_post_meta( $product_id, '_sale_price', $product_data['sale_price'] );
+				}
+				update_post_meta( $product_id, '_sku', $product_data['sku'] );
+				update_post_meta( $product_id, '_stock_status', 'instock' );
+				update_post_meta( $product_id, '_manage_stock', 'no' );
 			}
 
-			// Set product type.
-			wp_set_object_terms( $product_id, 'simple', 'product_type' );
-
-			// Set category.
-			if ( isset( $category_ids[ $product_data['cat_index'] ] ) ) {
-				wp_set_object_terms( $product_id, array( (int) $category_ids[ $product_data['cat_index'] ] ), 'product_cat' );
-			}
-
-			// Set WooCommerce meta.
-			update_post_meta( $product_id, '_regular_price', $product_data['price'] );
-			update_post_meta( $product_id, '_price', ! empty( $product_data['sale_price'] ) ? $product_data['sale_price'] : $product_data['price'] );
-			if ( ! empty( $product_data['sale_price'] ) ) {
-				update_post_meta( $product_id, '_sale_price', $product_data['sale_price'] );
-			}
-			update_post_meta( $product_id, '_sku', $product_data['sku'] );
-			update_post_meta( $product_id, '_stock_status', 'instock' );
-			update_post_meta( $product_id, '_manage_stock', 'no' );
-			update_post_meta( $product_id, '_visibility', 'visible' );
-
-			// Set Guebel custom meta.
+			// Set Guebel custom meta (product feature fields).
 			if ( ! empty( $product_data['meta'] ) ) {
 				foreach ( $product_data['meta'] as $meta_key => $meta_value ) {
 					update_post_meta( $product_id, $meta_key, $meta_value );
@@ -597,6 +622,10 @@ class Guebel_Demo_Content {
 			}
 
 			$product_ids[] = $product_id;
+		}
+
+		if ( function_exists( 'wc_delete_product_transients' ) ) {
+			wc_delete_product_transients();
 		}
 
 		return $product_ids;

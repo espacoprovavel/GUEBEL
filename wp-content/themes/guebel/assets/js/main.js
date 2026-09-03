@@ -186,48 +186,108 @@
 	/* -------------------------------------------------------
 	 * Newsletter form (front-end only; actual handling via plugin)
 	 * ------------------------------------------------------- */
-	const newsletterForm = document.querySelector( '[data-newsletter-form]' );
+	function guebelFormFeedback( form, message, ok ) {
+		var box = form.querySelector( '[data-form-msg]' );
+		if ( ! box ) {
+			box = document.createElement( 'p' );
+			box.setAttribute( 'data-form-msg', '' );
+			box.style.marginTop = '12px';
+			box.style.fontSize = '13px';
+			form.appendChild( box );
+		}
+		box.textContent = message;
+		box.style.color = ok ? '#2f7a5b' : '#c0563b';
+	}
 
-	if ( newsletterForm ) {
+	document.querySelectorAll( '[data-newsletter-form]' ).forEach( function ( newsletterForm ) {
 		newsletterForm.addEventListener( 'submit', function ( e ) {
 			e.preventDefault();
 			const btn = this.querySelector( 'button[type="submit"]' );
 			const input = this.querySelector( 'input[type="email"]' );
+			const consent = this.querySelector( 'input[name="consent"]' );
+			const btnLabel = btn ? btn.textContent : '';
 
-			if ( ! input?.value ) return;
+			if ( ! input || ! input.value ) return;
+			if ( consent && ! consent.checked ) {
+				guebelFormFeedback( this, ( guebelData.i18n && guebelData.i18n.consentRequired ) || 'Precisa de autorizar.', false );
+				return;
+			}
 
-			btn.textContent = btn.dataset.loadingText || '...';
+			if ( typeof guebelData === 'undefined' || ! guebelData.ajaxUrl ) return;
+
+			btn.textContent = ( guebelData.i18n && guebelData.i18n.sending ) || '...';
 			btn.disabled = true;
 
-			if ( typeof guebelData !== 'undefined' && guebelData.ajaxUrl ) {
-				const formData = new FormData();
-				formData.append( 'action', 'guebel_newsletter_subscribe' );
-				formData.append( 'email', input.value );
-				formData.append( 'nonce', guebelData.nonce || '' );
+			const formData = new FormData();
+			formData.append( 'action', 'guebel_newsletter_subscribe' );
+			formData.append( 'email', input.value );
+			formData.append( 'consent', consent && consent.checked ? '1' : '0' );
+			formData.append( 'nonce', guebelData.nonce || '' );
 
-				fetch( guebelData.ajaxUrl, {
-					method: 'POST',
-					body: formData,
-				} )
-					.then( function ( res ) { return res.json(); } )
-					.then( function ( data ) {
-						if ( data.success ) {
-							newsletterForm.innerHTML =
-								'<p class="newsletter-success">' +
-								( guebelData.i18n?.subscribed || 'Thank you for subscribing!' ) +
-								'</p>';
-						} else {
-							btn.textContent = guebelData.i18n?.subscribe || 'Subscribe';
-							btn.disabled = false;
-						}
-					} )
-					.catch( function () {
-						btn.textContent = guebelData.i18n?.subscribe || 'Subscribe';
+			fetch( guebelData.ajaxUrl, { method: 'POST', body: formData } )
+				.then( function ( res ) { return res.json(); } )
+				.then( function ( data ) {
+					if ( data.success ) {
+						newsletterForm.innerHTML =
+							'<p class="newsletter-success" style="color:#e9e2cf;">' +
+							( ( data.data && data.data.message ) || ( guebelData.i18n && guebelData.i18n.subscribed ) || 'Obrigado!' ) +
+							'</p>';
+					} else {
+						guebelFormFeedback( newsletterForm, ( data.data && data.data.message ) || 'Erro.', false );
+						btn.textContent = btnLabel;
 						btn.disabled = false;
-					} );
-			}
+					}
+				} )
+				.catch( function () {
+					btn.textContent = btnLabel;
+					btn.disabled = false;
+				} );
 		} );
-	}
+	} );
+
+	/* -------------------------------------------------------
+	 * Contact form (AJAX, RGPD consent)
+	 * ------------------------------------------------------- */
+	document.querySelectorAll( '[data-guebel-contact]' ).forEach( function ( contactForm ) {
+		contactForm.addEventListener( 'submit', function ( e ) {
+			e.preventDefault();
+			if ( typeof guebelData === 'undefined' || ! guebelData.ajaxUrl ) return;
+
+			const btn = this.querySelector( 'button[type="submit"]' );
+			const consent = this.querySelector( 'input[name="consent"]' );
+			const btnLabel = btn ? btn.textContent : '';
+
+			if ( consent && ! consent.checked ) {
+				guebelFormFeedback( this, ( guebelData.i18n && guebelData.i18n.consentRequired ) || 'Precisa de aceitar a Política de Privacidade.', false );
+				return;
+			}
+
+			const formData = new FormData( this );
+			formData.append( 'action', 'guebel_contact_submit' );
+			formData.append( 'nonce', guebelData.nonce || '' );
+			if ( consent ) { formData.set( 'consent', '1' ); }
+
+			if ( btn ) { btn.textContent = ( guebelData.i18n && guebelData.i18n.sending ) || '...'; btn.disabled = true; }
+
+			const thisForm = this;
+			fetch( guebelData.ajaxUrl, { method: 'POST', body: formData } )
+				.then( function ( res ) { return res.json(); } )
+				.then( function ( data ) {
+					if ( data.success ) {
+						thisForm.innerHTML =
+							'<p class="contact-success" style="color:#2f7a5b;font-size:15px;">' +
+							( ( data.data && data.data.message ) || ( guebelData.i18n && guebelData.i18n.sent ) || 'Enviado!' ) +
+							'</p>';
+					} else {
+						guebelFormFeedback( thisForm, ( data.data && data.data.message ) || 'Erro.', false );
+						if ( btn ) { btn.textContent = btnLabel; btn.disabled = false; }
+					}
+				} )
+				.catch( function () {
+					if ( btn ) { btn.textContent = btnLabel; btn.disabled = false; }
+				} );
+		} );
+	} );
 
 	/* -------------------------------------------------------
 	 * Product quick-view quantity buttons (WooCommerce)

@@ -1,8 +1,8 @@
 <?php
 /**
  * Plugin Name: Guebel Core
- * Description: Core functionality for the Guebel store - custom post types, taxonomies, widgets, and integrations
- * Version: 1.0.1
+ * Description: Core functionality for the Guebel store - custom post types, taxonomies, widgets, contact form, RGPD newsletter, and integrations
+ * Version: 1.1.0
  * Author: Guebel
  * Text Domain: guebel-core
  * Domain Path: /languages
@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'GUEBEL_CORE_VERSION', '1.0.1' );
+define( 'GUEBEL_CORE_VERSION', '1.1.0' );
 define( 'GUEBEL_CORE_PLUGIN_FILE', __FILE__ );
 define( 'GUEBEL_CORE_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'GUEBEL_CORE_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
@@ -90,6 +90,7 @@ final class Guebel_Core {
 		register_deactivation_hook( GUEBEL_CORE_PLUGIN_FILE, array( $this, 'deactivate' ) );
 
 		add_action( 'plugins_loaded', array( $this, 'load_textdomain' ) );
+		add_action( 'plugins_loaded', array( $this, 'maybe_upgrade' ) );
 		add_action( 'admin_notices', array( $this, 'dependency_notices' ) );
 		add_action( 'init', array( $this, 'init_modules' ), 5 );
 		add_action( 'widgets_init', array( $this, 'register_widgets' ) );
@@ -126,11 +127,14 @@ final class Guebel_Core {
 		$table_name      = $wpdb->prefix . 'guebel_newsletter';
 		$charset_collate = $wpdb->get_charset_collate();
 
-		$sql = "CREATE TABLE IF NOT EXISTS {$table_name} (
+		$sql = "CREATE TABLE {$table_name} (
 			id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
 			email varchar(255) NOT NULL,
 			name varchar(255) DEFAULT '',
 			status varchar(20) NOT NULL DEFAULT 'subscribed',
+			consent tinyint(1) NOT NULL DEFAULT 0,
+			consent_date datetime DEFAULT NULL,
+			consent_ip varchar(45) DEFAULT '',
 			created_at datetime NOT NULL,
 			PRIMARY KEY (id),
 			UNIQUE KEY email (email)
@@ -138,6 +142,21 @@ final class Guebel_Core {
 
 		require_once ABSPATH . 'wp-admin/includes/upgrade.php';
 		dbDelta( $sql );
+	}
+
+	/**
+	 * Run database upgrades when the stored version is behind.
+	 *
+	 * Ensures the newsletter table gains the RGPD consent columns on
+	 * existing installs (dbDelta adds missing columns safely).
+	 */
+	public function maybe_upgrade() {
+		$stored = get_option( 'guebel_core_version', '' );
+		if ( GUEBEL_CORE_VERSION === $stored ) {
+			return;
+		}
+		$this->create_newsletter_table();
+		update_option( 'guebel_core_version', GUEBEL_CORE_VERSION );
 	}
 
 	/**

@@ -72,15 +72,19 @@ function guebel_enqueue_scripts() {
 		'guebelData',
 		array(
 			'ajaxUrl'  => admin_url( 'admin-ajax.php' ),
+			'nonce'    => wp_create_nonce( 'guebel_ajax_nonce' ),
 			'homeUrl'  => home_url( '/' ),
 			'themeUrl' => get_template_directory_uri(),
 			'i18n'     => array(
-				'menuOpen'  => esc_html__( 'Open menu', 'guebel' ),
-				'menuClose' => esc_html__( 'Close menu', 'guebel' ),
-				'loading'   => esc_html__( 'Loading...', 'guebel' ),
-				'error'     => esc_html__( 'An error occurred. Please try again.', 'guebel' ),
-				'emailRequired' => esc_html__( 'Please enter a valid email address.', 'guebel' ),
-				'subscribed'    => esc_html__( 'Thank you for subscribing!', 'guebel' ),
+				'menuOpen'  => esc_html__( 'Abrir menu', 'guebel' ),
+				'menuClose' => esc_html__( 'Fechar menu', 'guebel' ),
+				'loading'   => esc_html__( 'A enviar...', 'guebel' ),
+				'error'     => esc_html__( 'Ocorreu um erro. Por favor, tente novamente.', 'guebel' ),
+				'emailRequired' => esc_html__( 'Por favor, introduza um email válido.', 'guebel' ),
+				'subscribed'    => esc_html__( 'Obrigado por subscrever!', 'guebel' ),
+				'consentRequired' => esc_html__( 'Precisa de autorizar para continuar.', 'guebel' ),
+				'sending'    => esc_html__( 'A enviar...', 'guebel' ),
+				'sent'       => esc_html__( 'Mensagem enviada com sucesso!', 'guebel' ),
 			),
 		)
 	);

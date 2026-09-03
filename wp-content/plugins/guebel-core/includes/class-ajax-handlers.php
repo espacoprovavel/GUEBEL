@@ -22,6 +22,10 @@ class Guebel_Ajax_Handlers {
 		add_action( 'wp_ajax_guebel_newsletter_subscribe', array( $this, 'newsletter_subscribe' ) );
 		add_action( 'wp_ajax_nopriv_guebel_newsletter_subscribe', array( $this, 'newsletter_subscribe' ) );
 
+		// Contact form (available to all).
+		add_action( 'wp_ajax_guebel_contact_submit', array( $this, 'contact_submit' ) );
+		add_action( 'wp_ajax_nopriv_guebel_contact_submit', array( $this, 'contact_submit' ) );
+
 		// Quick view (available to all).
 		add_action( 'wp_ajax_guebel_quick_view', array( $this, 'quick_view' ) );
 		add_action( 'wp_ajax_nopriv_guebel_quick_view', array( $this, 'quick_view' ) );
@@ -69,6 +73,14 @@ class Guebel_Ajax_Handlers {
 			);
 		}
 
+		// RGPD: explicit marketing consent is required and recorded.
+		$consent = isset( $_POST['consent'] ) && in_array( wp_unslash( $_POST['consent'] ), array( '1', 'yes', 'true', 'on' ), true );
+		if ( ! $consent ) {
+			wp_send_json_error(
+				array( 'message' => __( 'Precisa de autorizar a receção de comunicações para subscrever.', 'guebel-core' ) )
+			);
+		}
+
 		$name = isset( $_POST['name'] ) ? sanitize_text_field( wp_unslash( $_POST['name'] ) ) : '';
 
 		global $wpdb;
@@ -88,16 +100,19 @@ class Guebel_Ajax_Handlers {
 			);
 		}
 
-		// Insert subscriber.
+		// Insert subscriber with RGPD consent proof (date + IP).
 		$result = $wpdb->insert( // phpcs:ignore WordPress.DB.DirectDatabaseQuery
 			$table_name,
 			array(
-				'email'      => $email,
-				'name'       => $name,
-				'status'     => 'subscribed',
-				'created_at' => current_time( 'mysql' ),
+				'email'        => $email,
+				'name'         => $name,
+				'status'       => 'subscribed',
+				'consent'      => 1,
+				'consent_date' => current_time( 'mysql' ),
+				'consent_ip'   => $this->get_client_ip(),
+				'created_at'   => current_time( 'mysql' ),
 			),
-			array( '%s', '%s', '%s', '%s' )
+			array( '%s', '%s', '%s', '%d', '%s', '%s', '%s' )
 		);
 
 		if ( false === $result ) {
@@ -117,6 +132,156 @@ class Guebel_Ajax_Handlers {
 		wp_send_json_success(
 			array( 'message' => __( 'Subscrição realizada com sucesso! Obrigado.', 'guebel-core' ) )
 		);
+	}
+
+	/**
+	 * Handle contact form submission.
+	 *
+	 * Sends the enquiry to the store email. RGPD: requires the visitor to
+	 * accept the privacy policy before the message is processed.
+	 */
+	public function contact_submit() {
+		// Verify nonce.
+		if ( ! isset( $_POST['nonce'] ) ||
+			! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['nonce'] ) ), 'guebel_ajax_nonce' ) ) {
+			wp_send_json_error(
+				array( 'message' => __( 'Erro de segurança. Recarregue a página e tente novamente.', 'guebel-core' ) ),
+				403
+			);
+		}
+
+		$name    = isset( $_POST['name'] ) ? sanitize_text_field( wp_unslash( $_POST['name'] ) ) : '';
+		$email   = isset( $_POST['email'] ) ? sanitize_email( wp_unslash( $_POST['email'] ) ) : '';
+		$phone   = isset( $_POST['phone'] ) ? sanitize_text_field( wp_unslash( $_POST['phone'] ) ) : '';
+		$message = isset( $_POST['message'] ) ? sanitize_textarea_field( wp_unslash( $_POST['message'] ) ) : '';
+
+		if ( empty( $name ) ) {
+			wp_send_json_error( array( 'message' => __( 'Por favor, indique o seu nome.', 'guebel-core' ) ) );
+		}
+		if ( empty( $email ) || ! is_email( $email ) ) {
+			wp_send_json_error( array( 'message' => __( 'Por favor, introduza um endereço de email válido.', 'guebel-core' ) ) );
+		}
+		if ( empty( $message ) ) {
+			wp_send_json_error( array( 'message' => __( 'Por favor, escreva a sua mensagem.', 'guebel-core' ) ) );
+		}
+
+		// RGPD: privacy policy acceptance is required.
+		$consent = isset( $_POST['consent'] ) && in_array( wp_unslash( $_POST['consent'] ), array( '1', 'yes', 'true', 'on' ), true );
+		if ( ! $consent ) {
+			wp_send_json_error( array( 'message' => __( 'Precisa de aceitar a Política de Privacidade para enviar a mensagem.', 'guebel-core' ) ) );
+		}
+
+		// Optional marketing opt-in from the same form.
+		$marketing = isset( $_POST['marketing'] ) && in_array( wp_unslash( $_POST['marketing'] ), array( '1', 'yes', 'true', 'on' ), true );
+		if ( $marketing ) {
+			$this->store_newsletter_optin( $email, $name );
+		}
+
+		// Recipient: plugin setting, then Customizer email, then admin email.
+		$to = Guebel_Core::get_option( 'email' );
+		if ( empty( $to ) || ! is_email( $to ) ) {
+			$to = get_theme_mod( 'guebel_email', '' );
+		}
+		if ( empty( $to ) || ! is_email( $to ) ) {
+			$to = get_option( 'admin_email' );
+		}
+
+		$site_name = get_bloginfo( 'name' );
+		/* translators: %s: visitor name */
+		$subject = sprintf( __( 'Novo contacto do site — %s', 'guebel-core' ), $name );
+
+		$body  = __( 'Nova mensagem do formulário de contacto:', 'guebel-core' ) . "\n\n";
+		$body .= __( 'Nome', 'guebel-core' ) . ': ' . $name . "\n";
+		$body .= __( 'Email', 'guebel-core' ) . ': ' . $email . "\n";
+		if ( $phone ) {
+			$body .= __( 'Telefone', 'guebel-core' ) . ': ' . $phone . "\n";
+		}
+		$body .= __( 'Mensagem', 'guebel-core' ) . ":\n" . $message . "\n\n";
+		$body .= __( 'Marketing autorizado', 'guebel-core' ) . ': ' . ( $marketing ? __( 'Sim', 'guebel-core' ) : __( 'Não', 'guebel-core' ) ) . "\n";
+		$body .= 'IP: ' . $this->get_client_ip() . "\n";
+
+		$headers = array(
+			'Content-Type: text/plain; charset=UTF-8',
+			'Reply-To: ' . $name . ' <' . $email . '>',
+		);
+
+		$sent = wp_mail( $to, $subject, $body, $headers );
+
+		/**
+		 * Fires after a contact form submission (regardless of email result).
+		 *
+		 * @param array $data Submitted, sanitized data.
+		 */
+		do_action(
+			'guebel_contact_submitted',
+			array(
+				'name'      => $name,
+				'email'     => $email,
+				'phone'     => $phone,
+				'message'   => $message,
+				'marketing' => $marketing,
+			)
+		);
+
+		if ( ! $sent ) {
+			wp_send_json_error(
+				array( 'message' => __( 'Não foi possível enviar a mensagem. Por favor, tente mais tarde ou contacte-nos por email.', 'guebel-core' ) )
+			);
+		}
+
+		wp_send_json_success(
+			array( 'message' => __( 'Mensagem enviada com sucesso! Entraremos em contacto em breve.', 'guebel-core' ) )
+		);
+	}
+
+	/**
+	 * Store a newsletter opt-in (used by the contact form marketing checkbox).
+	 *
+	 * @param string $email Email address.
+	 * @param string $name  Name.
+	 */
+	private function store_newsletter_optin( $email, $name ) {
+		if ( empty( $email ) || ! is_email( $email ) ) {
+			return;
+		}
+
+		global $wpdb;
+		$table_name = $wpdb->prefix . 'guebel_newsletter';
+
+		$existing = $wpdb->get_var( // phpcs:ignore WordPress.DB.DirectDatabaseQuery
+			$wpdb->prepare(
+				"SELECT id FROM {$table_name} WHERE email = %s", // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+				$email
+			)
+		);
+
+		if ( $existing ) {
+			return;
+		}
+
+		$wpdb->insert( // phpcs:ignore WordPress.DB.DirectDatabaseQuery
+			$table_name,
+			array(
+				'email'        => $email,
+				'name'         => $name,
+				'status'       => 'subscribed',
+				'consent'      => 1,
+				'consent_date' => current_time( 'mysql' ),
+				'consent_ip'   => $this->get_client_ip(),
+				'created_at'   => current_time( 'mysql' ),
+			),
+			array( '%s', '%s', '%s', '%d', '%s', '%s', '%s' )
+		);
+	}
+
+	/**
+	 * Get the client IP address (best effort, for consent proof).
+	 *
+	 * @return string
+	 */
+	private function get_client_ip() {
+		$ip = isset( $_SERVER['REMOTE_ADDR'] ) ? sanitize_text_field( wp_unslash( $_SERVER['REMOTE_ADDR'] ) ) : '';
+		return $ip ? $ip : '0.0.0.0';
 	}
 
 	/**

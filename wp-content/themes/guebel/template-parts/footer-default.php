@@ -45,9 +45,23 @@ $brand_name   = get_bloginfo( 'name' );
 				<?php endif; ?>
 
 				<form class="footer-newsletter-form" data-newsletter-form>
-					<label class="screen-reader-text" for="footer-newsletter-email"><?php esc_html_e( 'Email', 'guebel' ); ?></label>
-					<input type="email" id="footer-newsletter-email" name="email" class="footer-newsletter-input" placeholder="<?php esc_attr_e( 'O seu email', 'guebel' ); ?>" required>
-					<button type="submit" class="rule-btn footer-newsletter-btn"><?php esc_html_e( 'Subscrever', 'guebel' ); ?></button>
+					<div class="footer-newsletter-row">
+						<label class="screen-reader-text" for="footer-newsletter-email"><?php esc_html_e( 'Email', 'guebel' ); ?></label>
+						<input type="email" id="footer-newsletter-email" name="email" class="footer-newsletter-input" placeholder="<?php esc_attr_e( 'O seu email', 'guebel' ); ?>" required>
+						<button type="submit" class="rule-btn footer-newsletter-btn"><?php esc_html_e( 'Subscrever', 'guebel' ); ?></button>
+					</div>
+					<label class="footer-consent">
+						<input type="checkbox" name="consent" value="1" required>
+						<span>
+							<?php
+							printf(
+								/* translators: %s: privacy policy link */
+								esc_html__( 'Autorizo a Guebel a enviar-me comunicações de marketing por email e aceito a %s.', 'guebel' ),
+								'<a href="' . esc_url( home_url( '/privacidade/' ) ) . '">' . esc_html__( 'Política de Privacidade', 'guebel' ) . '</a>'
+							);
+							?>
+						</span>
+					</label>
 				</form>
 			</div>
 
