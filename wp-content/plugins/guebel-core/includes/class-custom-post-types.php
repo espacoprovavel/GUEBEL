@@ -135,6 +135,9 @@ class Guebel_Custom_Post_Types {
 	 * Register custom taxonomies.
 	 */
 	public function register_taxonomies() {
+		if ( ! class_exists( 'WooCommerce' ) ) {
+			return;
+		}
 		$this->register_material_taxonomy();
 		$this->register_finish_taxonomy();
 	}

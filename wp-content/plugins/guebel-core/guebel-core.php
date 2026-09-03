@@ -2,13 +2,12 @@
 /**
  * Plugin Name: Guebel Core
  * Description: Core functionality for the Guebel store - custom post types, taxonomies, widgets, and integrations
- * Version: 1.0.0
+ * Version: 1.0.1
  * Author: Guebel
  * Text Domain: guebel-core
  * Domain Path: /languages
  * Requires at least: 6.0
  * Requires PHP: 7.4
- * WC requires at least: 7.0
  *
  * @package Guebel_Core
  */
@@ -17,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'GUEBEL_CORE_VERSION', '1.0.0' );
+define( 'GUEBEL_CORE_VERSION', '1.0.1' );
 define( 'GUEBEL_CORE_PLUGIN_FILE', __FILE__ );
 define( 'GUEBEL_CORE_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'GUEBEL_CORE_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
@@ -61,25 +60,26 @@ final class Guebel_Core {
 	private function __clone() {}
 
 	/**
-	 * Prevent unserialization.
-	 *
-	 * @throws \Exception Always.
-	 */
-	public function __wakeup() {
-		throw new \Exception( 'Cannot unserialize singleton.' );
-	}
-
-	/**
 	 * Include required files.
 	 */
 	private function includes() {
-		require_once GUEBEL_CORE_PLUGIN_DIR . 'includes/class-custom-post-types.php';
-		require_once GUEBEL_CORE_PLUGIN_DIR . 'includes/class-product-features.php';
-		require_once GUEBEL_CORE_PLUGIN_DIR . 'includes/class-demo-content.php';
-		require_once GUEBEL_CORE_PLUGIN_DIR . 'includes/class-admin-settings.php';
-		require_once GUEBEL_CORE_PLUGIN_DIR . 'includes/class-shortcodes.php';
-		require_once GUEBEL_CORE_PLUGIN_DIR . 'includes/class-ajax-handlers.php';
-		require_once GUEBEL_CORE_PLUGIN_DIR . 'widgets/class-widget-contact-info.php';
+		$dir = GUEBEL_CORE_PLUGIN_DIR;
+
+		$files = array(
+			'includes/class-custom-post-types.php',
+			'includes/class-product-features.php',
+			'includes/class-demo-content.php',
+			'includes/class-admin-settings.php',
+			'includes/class-shortcodes.php',
+			'includes/class-ajax-handlers.php',
+		);
+
+		foreach ( $files as $file ) {
+			$path = $dir . $file;
+			if ( file_exists( $path ) ) {
+				require_once $path;
+			}
+		}
 	}
 
 	/**
@@ -91,7 +91,7 @@ final class Guebel_Core {
 
 		add_action( 'plugins_loaded', array( $this, 'load_textdomain' ) );
 		add_action( 'admin_notices', array( $this, 'dependency_notices' ) );
-		add_action( 'init', array( $this, 'init_modules' ) );
+		add_action( 'init', array( $this, 'init_modules' ), 5 );
 		add_action( 'widgets_init', array( $this, 'register_widgets' ) );
 	}
 
@@ -99,16 +99,14 @@ final class Guebel_Core {
 	 * Plugin activation.
 	 */
 	public function activate() {
-		// Register CPTs so rewrite rules can be flushed.
-		$cpt = new Guebel_Custom_Post_Types();
-		$cpt->register_post_types();
-		$cpt->register_taxonomies();
+		if ( class_exists( 'Guebel_Custom_Post_Types' ) ) {
+			$cpt = new Guebel_Custom_Post_Types();
+			$cpt->register_post_types();
+			$cpt->register_taxonomies();
+		}
 
 		flush_rewrite_rules();
-
-		// Create newsletter table.
 		$this->create_newsletter_table();
-
 		update_option( 'guebel_core_version', GUEBEL_CORE_VERSION );
 	}
 
@@ -133,7 +131,7 @@ final class Guebel_Core {
 			email varchar(255) NOT NULL,
 			name varchar(255) DEFAULT '',
 			status varchar(20) NOT NULL DEFAULT 'subscribed',
-			created_at datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+			created_at datetime NOT NULL,
 			PRIMARY KEY (id),
 			UNIQUE KEY email (email)
 		) {$charset_collate};";
@@ -158,20 +156,10 @@ final class Guebel_Core {
 	 */
 	public function dependency_notices() {
 		if ( ! class_exists( 'WooCommerce' ) ) {
-			?>
-			<div class="notice notice-warning is-dismissible">
-				<p>
-					<?php
-					printf(
-						/* translators: %1$s: plugin name, %2$s: WooCommerce link */
-						'%1$s ' . esc_html__( 'recomenda a utilização do', 'guebel-core' ) . ' %2$s ' . esc_html__( 'para funcionalidades completas de e-commerce.', 'guebel-core' ),
-						'<strong>Guebel Core</strong>',
-						'<a href="https://woocommerce.com/" target="_blank">WooCommerce</a>'
-					);
-					?>
-				</p>
-			</div>
-			<?php
+			echo '<div class="notice notice-warning is-dismissible"><p>';
+			echo '<strong>Guebel Core</strong> ';
+			echo esc_html__( 'recomenda o WooCommerce para funcionalidades completas de e-commerce.', 'guebel-core' );
+			echo '</p></div>';
 		}
 	}
 
@@ -179,19 +167,37 @@ final class Guebel_Core {
 	 * Initialize plugin modules.
 	 */
 	public function init_modules() {
-		new Guebel_Custom_Post_Types();
-		new Guebel_Product_Features();
-		new Guebel_Demo_Content();
-		new Guebel_Admin_Settings();
-		new Guebel_Shortcodes();
-		new Guebel_Ajax_Handlers();
+		if ( class_exists( 'Guebel_Custom_Post_Types' ) ) {
+			new Guebel_Custom_Post_Types();
+		}
+		if ( class_exists( 'Guebel_Product_Features' ) ) {
+			new Guebel_Product_Features();
+		}
+		if ( class_exists( 'Guebel_Demo_Content' ) ) {
+			new Guebel_Demo_Content();
+		}
+		if ( class_exists( 'Guebel_Admin_Settings' ) ) {
+			new Guebel_Admin_Settings();
+		}
+		if ( class_exists( 'Guebel_Shortcodes' ) ) {
+			new Guebel_Shortcodes();
+		}
+		if ( class_exists( 'Guebel_Ajax_Handlers' ) ) {
+			new Guebel_Ajax_Handlers();
+		}
 	}
 
 	/**
 	 * Register widgets.
 	 */
 	public function register_widgets() {
-		register_widget( 'Guebel_Widget_Contact_Info' );
+		$widget_file = GUEBEL_CORE_PLUGIN_DIR . 'widgets/class-widget-contact-info.php';
+		if ( file_exists( $widget_file ) ) {
+			require_once $widget_file;
+		}
+		if ( class_exists( 'Guebel_Widget_Contact_Info' ) ) {
+			register_widget( 'Guebel_Widget_Contact_Info' );
+		}
 	}
 
 	/**
@@ -217,7 +223,7 @@ final class Guebel_Core {
 }
 
 /**
- * Uninstall hook - registered separately for WordPress standards.
+ * Uninstall hook.
  */
 register_uninstall_hook( GUEBEL_CORE_PLUGIN_FILE, 'guebel_core_uninstall' );
 
@@ -225,16 +231,13 @@ register_uninstall_hook( GUEBEL_CORE_PLUGIN_FILE, 'guebel_core_uninstall' );
  * Plugin uninstall callback.
  */
 function guebel_core_uninstall() {
-	// Remove options.
 	delete_option( 'guebel_settings' );
 	delete_option( 'guebel_core_version' );
 	delete_option( 'guebel_demo_content_installed' );
 
-	// Remove newsletter table.
 	global $wpdb;
 	$wpdb->query( "DROP TABLE IF EXISTS {$wpdb->prefix}guebel_newsletter" ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery
 
-	// Remove custom post type posts.
 	$post_types = array( 'guebel_collection', 'guebel_testimonial' );
 	foreach ( $post_types as $post_type ) {
 		$posts = get_posts(
@@ -250,7 +253,6 @@ function guebel_core_uninstall() {
 		}
 	}
 
-	// Clean up post meta.
 	delete_post_meta_by_key( '_guebel_is_3d_printed' );
 	delete_post_meta_by_key( '_guebel_production_time' );
 	delete_post_meta_by_key( '_guebel_sustainability_info' );
@@ -258,7 +260,6 @@ function guebel_core_uninstall() {
 	delete_post_meta_by_key( '_guebel_dimensions_detail' );
 	delete_post_meta_by_key( '_guebel_care_instructions' );
 
-	// Remove custom taxonomies terms.
 	$taxonomies = array( 'guebel_material', 'guebel_finish' );
 	foreach ( $taxonomies as $taxonomy ) {
 		$terms = get_terms(
@@ -275,7 +276,6 @@ function guebel_core_uninstall() {
 		}
 	}
 
-	// Flush rewrite rules.
 	flush_rewrite_rules();
 }
 
@@ -288,5 +288,4 @@ function guebel_core() {
 	return Guebel_Core::instance();
 }
 
-// Initialize the plugin.
 guebel_core();
