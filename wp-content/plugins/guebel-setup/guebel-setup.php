@@ -1,8 +1,8 @@
 <?php
 /**
  * Plugin Name: Guebel Setup
- * Description: Cria as páginas iniciais e importa os templates Elementor do tema Guebel. Activar uma vez e depois apagar.
- * Version: 1.0.0
+ * Description: Cria as páginas iniciais e importa os templates Elementor do tema Guebel. Reactivar volta a importar os templates (actualiza o design das páginas).
+ * Version: 1.1.0
  * Author: Guebel
  * Text Domain: guebel-setup
  * Requires at least: 6.0
@@ -21,6 +21,9 @@ register_activation_hook( __FILE__, 'guebel_setup_activate' );
  * Run on plugin activation: create pages and import Elementor templates.
  */
 function guebel_setup_activate() {
+	// Force a fresh import of the Elementor templates on every (re)activation,
+	// so re-activating the plugin refreshes the page designs.
+	delete_option( 'guebel_setup_elementor_imported' );
 	guebel_setup_create_pages();
 	flush_rewrite_rules();
 }
@@ -46,49 +49,49 @@ function guebel_setup_create_pages() {
 		'inicio'       => array(
 			'title'    => 'Início',
 			'slug'     => 'inicio',
-			'template' => 'elementor_canvas',
+			'template' => 'elementor_header_footer',
 			'json'     => 'inicio.json',
 		),
 		'sobre'        => array(
 			'title'    => 'Sobre',
 			'slug'     => 'sobre',
-			'template' => 'elementor_canvas',
+			'template' => 'elementor_header_footer',
 			'json'     => 'sobre.json',
 		),
 		'contacto'     => array(
 			'title'    => 'Contacto',
 			'slug'     => 'contacto',
-			'template' => 'elementor_canvas',
+			'template' => 'elementor_header_footer',
 			'json'     => 'contacto.json',
 		),
 		'faq'          => array(
 			'title'    => 'FAQ',
 			'slug'     => 'faq',
-			'template' => 'elementor_canvas',
+			'template' => 'elementor_header_footer',
 			'json'     => 'faq.json',
 		),
 		'envios'       => array(
 			'title'    => 'Envios e Entregas',
 			'slug'     => 'envios',
-			'template' => 'elementor_canvas',
+			'template' => 'elementor_header_footer',
 			'json'     => 'envios.json',
 		),
 		'trocas'       => array(
 			'title'    => 'Trocas e Devoluções',
 			'slug'     => 'trocas',
-			'template' => 'elementor_canvas',
+			'template' => 'elementor_header_footer',
 			'json'     => 'trocas.json',
 		),
 		'termos'       => array(
 			'title'    => 'Termos e Condições',
 			'slug'     => 'termos',
-			'template' => 'elementor_canvas',
+			'template' => 'elementor_header_footer',
 			'json'     => 'termos.json',
 		),
 		'privacidade'  => array(
 			'title'    => 'Política de Privacidade',
 			'slug'     => 'privacidade',
-			'template' => 'elementor_canvas',
+			'template' => 'elementor_header_footer',
 			'json'     => 'privacidade.json',
 		),
 		'loja'         => array(
@@ -213,11 +216,14 @@ function guebel_setup_import_elementor_data() {
 			continue;
 		}
 
+		// Replace the theme URI token so bundled images resolve on any domain.
+		$json_content = str_replace( '{{THEME_URI}}', get_template_directory_uri(), $json_content );
+
 		update_post_meta( $page_id, '_elementor_data', wp_slash( $json_content ) );
 		update_post_meta( $page_id, '_elementor_edit_mode', 'builder' );
 		update_post_meta( $page_id, '_elementor_version', '3.21.0' );
 		update_post_meta( $page_id, '_elementor_template_type', 'page' );
-		update_post_meta( $page_id, '_wp_page_template', 'elementor_canvas' );
+		update_post_meta( $page_id, '_wp_page_template', 'elementor_header_footer' );
 	}
 
 	update_option( 'guebel_setup_elementor_imported', '1' );
