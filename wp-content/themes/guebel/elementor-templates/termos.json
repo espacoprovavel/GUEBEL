@@ -1,0 +1,82 @@
+[
+  {
+    "id": "sec_termos_hero",
+    "elType": "section",
+    "settings": {
+      "background_color": "#2d5a45",
+      "padding": {"unit": "px", "top": "120", "right": "40", "bottom": "120", "left": "40", "isLinked": false},
+      "layout": "full_width"
+    },
+    "elements": [
+      {
+        "id": "col_termos_hero",
+        "elType": "column",
+        "settings": {"_column_size": 100},
+        "elements": [
+          {
+            "id": "wid_termos_eyebrow",
+            "elType": "widget",
+            "widgetType": "heading",
+            "settings": {
+              "title": "LEGAL",
+              "align": "center",
+              "header_size": "h6",
+              "title_color": "#c8a96e",
+              "typography_font_family": "Work Sans",
+              "typography_font_size": {"unit": "px", "size": 11},
+              "typography_font_weight": "600",
+              "typography_letter_spacing": {"unit": "px", "size": 3}
+            }
+          },
+          {
+            "id": "wid_termos_spacer1",
+            "elType": "widget",
+            "widgetType": "spacer",
+            "settings": {"space": {"unit": "px", "size": 16}}
+          },
+          {
+            "id": "wid_termos_h1",
+            "elType": "widget",
+            "widgetType": "heading",
+            "settings": {
+              "title": "Termos e Condições",
+              "align": "center",
+              "header_size": "h1",
+              "title_color": "#f5f0e0",
+              "typography_font_family": "Cormorant Garamond",
+              "typography_font_size": {"unit": "px", "size": 48},
+              "typography_font_weight": "300",
+              "typography_letter_spacing": {"unit": "em", "size": 0.18},
+              "typography_text_transform": "uppercase"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "sec_termos_content",
+    "elType": "section",
+    "settings": {
+      "background_color": "#f5f0e0",
+      "padding": {"unit": "px", "top": "80", "right": "60", "bottom": "80", "left": "60", "isLinked": false}
+    },
+    "elements": [
+      {
+        "id": "col_termos_content",
+        "elType": "column",
+        "settings": {"_column_size": 100},
+        "elements": [
+          {
+            "id": "wid_termos_text",
+            "elType": "widget",
+            "widgetType": "text-editor",
+            "settings": {
+              "editor": "<div style=\"max-width: 800px; margin: 0 auto;\">\n\n<h3 style=\"color: #2d5a45; font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 400; margin-bottom: 12px;\">1. Identificação</h3>\n<p style=\"color: #7a8a82; font-size: 15px; line-height: 1.8; margin-bottom: 32px;\">A loja online Guebel é propriedade e operada em Portugal. Ao utilizar este site e efectuar compras, aceita os presentes termos e condições.</p>\n\n<h3 style=\"color: #2d5a45; font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 400; margin-bottom: 12px;\">2. Produtos</h3>\n<p style=\"color: #7a8a82; font-size: 15px; line-height: 1.8; margin-bottom: 32px;\">Todos os produtos são peças de decoração impressas em 3D com plásticos reciclados. As cores e acabamentos podem apresentar ligeiras variações em relação às imagens, inerentes ao processo de produção. Cada peça é produzida por encomenda.</p>\n\n<h3 style=\"color: #2d5a45; font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 400; margin-bottom: 12px;\">3. Preços e pagamentos</h3>\n<p style=\"color: #7a8a82; font-size: 15px; line-height: 1.8; margin-bottom: 32px;\">Todos os preços incluem IVA à taxa legal em vigor. Aceitamos pagamentos por cartão de crédito/débito, MB WAY e transferência bancária. O pagamento é processado no momento da encomenda.</p>\n\n<h3 style=\"color: #2d5a45; font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 400; margin-bottom: 12px;\">4. Envios</h3>\n<p style=\"color: #7a8a82; font-size: 15px; line-height: 1.8; margin-bottom: 32px;\">Consulte a nossa página de Envios para informações detalhadas sobre prazos e custos de entrega.</p>\n\n<h3 style=\"color: #2d5a45; font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 400; margin-bottom: 12px;\">5. Devoluções</h3>\n<p style=\"color: #7a8a82; font-size: 15px; line-height: 1.8; margin-bottom: 32px;\">Consulte a nossa página de Trocas e Devoluções para informações sobre o direito de livre resolução e procedimentos de devolução.</p>\n\n<h3 style=\"color: #2d5a45; font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 400; margin-bottom: 12px;\">6. Propriedade intelectual</h3>\n<p style=\"color: #7a8a82; font-size: 15px; line-height: 1.8; margin-bottom: 32px;\">Todos os designs, imagens e conteúdos deste site são propriedade da Guebel e estão protegidos por direitos de autor. A reprodução não autorizada é proibida.</p>\n\n<h3 style=\"color: #2d5a45; font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 400; margin-bottom: 12px;\">7. Lei aplicável</h3>\n<p style=\"color: #7a8a82; font-size: 15px; line-height: 1.8;\">Estes termos são regidos pela legislação portuguesa. Para resolução de litígios, são competentes os tribunais portugueses. Para resolução alternativa de litígios, pode recorrer à plataforma europeia de resolução de litígios em linha.</p>\n\n</div>"
+            }
+          }
+        ]
+      }
+    ]
+  }
+]

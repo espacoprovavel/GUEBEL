@@ -1,0 +1,329 @@
+[
+  {
+    "id": "sec_hero_001",
+    "elType": "section",
+    "settings": {
+      "background_color": "#2d5a45",
+      "padding": {"unit": "px", "top": "140", "right": "40", "bottom": "140", "left": "40", "isLinked": false},
+      "layout": "full_width"
+    },
+    "elements": [
+      {
+        "id": "col_hero_001",
+        "elType": "column",
+        "settings": {"_column_size": 100},
+        "elements": [
+          {
+            "id": "wid_hero_eyebrow",
+            "elType": "widget",
+            "widgetType": "heading",
+            "settings": {
+              "title": "GUEBEL · DESIGN SUSTENTÁVEL",
+              "align": "center",
+              "header_size": "h6",
+              "title_color": "#c8a96e",
+              "typography_font_family": "Work Sans",
+              "typography_font_size": {"unit": "px", "size": 11},
+              "typography_font_weight": "600",
+              "typography_letter_spacing": {"unit": "px", "size": 3}
+            }
+          },
+          {
+            "id": "wid_hero_spacer1",
+            "elType": "widget",
+            "widgetType": "spacer",
+            "settings": {"space": {"unit": "px", "size": 20}}
+          },
+          {
+            "id": "wid_hero_h1",
+            "elType": "widget",
+            "widgetType": "heading",
+            "settings": {
+              "title": "Peças impressas em 3D para a sua casa",
+              "align": "center",
+              "header_size": "h1",
+              "title_color": "#f5f0e0",
+              "typography_font_family": "Cormorant Garamond",
+              "typography_font_size": {"unit": "px", "size": 52},
+              "typography_font_weight": "300",
+              "typography_letter_spacing": {"unit": "em", "size": 0.18},
+              "typography_text_transform": "uppercase"
+            }
+          },
+          {
+            "id": "wid_hero_spacer2",
+            "elType": "widget",
+            "widgetType": "spacer",
+            "settings": {"space": {"unit": "px", "size": 12}}
+          },
+          {
+            "id": "wid_hero_sub",
+            "elType": "widget",
+            "widgetType": "heading",
+            "settings": {
+              "title": "Objectos de decoração únicos, feitos com plásticos reciclados, produzidos por encomenda em Portugal.",
+              "align": "center",
+              "header_size": "p",
+              "title_color": "#b2d8d0",
+              "typography_font_family": "Work Sans",
+              "typography_font_size": {"unit": "px", "size": 16},
+              "typography_font_weight": "300"
+            }
+          },
+          {
+            "id": "wid_hero_spacer3",
+            "elType": "widget",
+            "widgetType": "spacer",
+            "settings": {"space": {"unit": "px", "size": 32}}
+          },
+          {
+            "id": "wid_hero_btn",
+            "elType": "widget",
+            "widgetType": "button",
+            "settings": {
+              "text": "VER LOJA",
+              "link": {"url": "/loja/", "is_external": false, "nofollow": false},
+              "align": "center",
+              "background_color": "#c8a96e",
+              "button_text_color": "#2d5a45",
+              "border_radius": {"unit": "px", "top": "0", "right": "0", "bottom": "0", "left": "0", "isLinked": true},
+              "typography_font_family": "Work Sans",
+              "typography_font_size": {"unit": "px", "size": 11},
+              "typography_font_weight": "600",
+              "typography_letter_spacing": {"unit": "em", "size": 0.28},
+              "typography_text_transform": "uppercase"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "sec_about_002",
+    "elType": "section",
+    "settings": {
+      "background_color": "#f5f0e0",
+      "padding": {"unit": "px", "top": "100", "right": "40", "bottom": "100", "left": "40", "isLinked": false},
+      "structure": "20"
+    },
+    "elements": [
+      {
+        "id": "col_about_left",
+        "elType": "column",
+        "settings": {"_column_size": 50},
+        "elements": [
+          {
+            "id": "wid_about_img",
+            "elType": "widget",
+            "widgetType": "image",
+            "settings": {
+              "image": {"url": "", "id": ""},
+              "image_size": "large",
+              "caption": "Design sustentável Guebel"
+            }
+          }
+        ]
+      },
+      {
+        "id": "col_about_right",
+        "elType": "column",
+        "settings": {"_column_size": 50},
+        "elements": [
+          {
+            "id": "wid_about_eyebrow",
+            "elType": "widget",
+            "widgetType": "heading",
+            "settings": {
+              "title": "SOBRE NÓS",
+              "header_size": "h6",
+              "title_color": "#c8a96e",
+              "typography_font_family": "Work Sans",
+              "typography_font_size": {"unit": "px", "size": 11},
+              "typography_font_weight": "600",
+              "typography_letter_spacing": {"unit": "px", "size": 3}
+            }
+          },
+          {
+            "id": "wid_about_h2",
+            "elType": "widget",
+            "widgetType": "heading",
+            "settings": {
+              "title": "Design sustentável, feito em Portugal",
+              "header_size": "h2",
+              "title_color": "#2d3a35",
+              "typography_font_family": "Cormorant Garamond",
+              "typography_font_size": {"unit": "px", "size": 36},
+              "typography_font_weight": "300",
+              "typography_letter_spacing": {"unit": "em", "size": 0.12},
+              "typography_text_transform": "uppercase"
+            }
+          },
+          {
+            "id": "wid_about_text",
+            "elType": "widget",
+            "widgetType": "text-editor",
+            "settings": {
+              "editor": "<p style=\"color: #7a8a82; font-size: 15px; line-height: 1.8;\">Cada peça Guebel é impressa em 3D com plásticos reciclados, combinando tecnologia e artesanato. Produzimos por encomenda, sem desperdício, com design pensado para durar.</p>"
+            }
+          },
+          {
+            "id": "wid_about_btn",
+            "elType": "widget",
+            "widgetType": "button",
+            "settings": {
+              "text": "SABER MAIS",
+              "link": {"url": "/sobre/", "is_external": false, "nofollow": false},
+              "background_color": "#2d5a45",
+              "button_text_color": "#f5f0e0",
+              "typography_font_family": "Work Sans",
+              "typography_font_size": {"unit": "px", "size": 11},
+              "typography_font_weight": "600",
+              "typography_letter_spacing": {"unit": "em", "size": 0.28},
+              "typography_text_transform": "uppercase"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "sec_products_003",
+    "elType": "section",
+    "settings": {
+      "background_color": "#2d3a35",
+      "padding": {"unit": "px", "top": "100", "right": "40", "bottom": "100", "left": "40", "isLinked": false},
+      "layout": "full_width"
+    },
+    "elements": [
+      {
+        "id": "col_products_001",
+        "elType": "column",
+        "settings": {"_column_size": 100},
+        "elements": [
+          {
+            "id": "wid_products_h2",
+            "elType": "widget",
+            "widgetType": "heading",
+            "settings": {
+              "title": "As nossas peças",
+              "align": "center",
+              "header_size": "h2",
+              "title_color": "#f5f0e0",
+              "typography_font_family": "Cormorant Garamond",
+              "typography_font_size": {"unit": "px", "size": 36},
+              "typography_font_weight": "300",
+              "typography_letter_spacing": {"unit": "em", "size": 0.12},
+              "typography_text_transform": "uppercase"
+            }
+          },
+          {
+            "id": "wid_products_spacer",
+            "elType": "widget",
+            "widgetType": "spacer",
+            "settings": {"space": {"unit": "px", "size": 40}}
+          },
+          {
+            "id": "wid_products_grid",
+            "elType": "widget",
+            "widgetType": "woocommerce-products",
+            "settings": {
+              "columns": "3",
+              "rows": "1",
+              "paginate": "no",
+              "orderby": "date",
+              "order": "desc"
+            }
+          },
+          {
+            "id": "wid_products_spacer2",
+            "elType": "widget",
+            "widgetType": "spacer",
+            "settings": {"space": {"unit": "px", "size": 40}}
+          },
+          {
+            "id": "wid_products_btn",
+            "elType": "widget",
+            "widgetType": "button",
+            "settings": {
+              "text": "VER TODA A LOJA",
+              "link": {"url": "/loja/", "is_external": false, "nofollow": false},
+              "align": "center",
+              "background_color": "#c8a96e",
+              "button_text_color": "#2d5a45",
+              "typography_font_family": "Work Sans",
+              "typography_font_size": {"unit": "px", "size": 11},
+              "typography_font_weight": "600",
+              "typography_letter_spacing": {"unit": "em", "size": 0.28},
+              "typography_text_transform": "uppercase"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "sec_club_004",
+    "elType": "section",
+    "settings": {
+      "background_color": "#c8a96e",
+      "padding": {"unit": "px", "top": "100", "right": "40", "bottom": "100", "left": "40", "isLinked": false},
+      "layout": "full_width"
+    },
+    "elements": [
+      {
+        "id": "col_club_001",
+        "elType": "column",
+        "settings": {"_column_size": 100},
+        "elements": [
+          {
+            "id": "wid_club_h2",
+            "elType": "widget",
+            "widgetType": "heading",
+            "settings": {
+              "title": "Clube Guebel",
+              "align": "center",
+              "header_size": "h2",
+              "title_color": "#2d5a45",
+              "typography_font_family": "Cormorant Garamond",
+              "typography_font_size": {"unit": "px", "size": 36},
+              "typography_font_weight": "300",
+              "typography_letter_spacing": {"unit": "em", "size": 0.12},
+              "typography_text_transform": "uppercase"
+            }
+          },
+          {
+            "id": "wid_club_text",
+            "elType": "widget",
+            "widgetType": "text-editor",
+            "settings": {
+              "editor": "<p style=\"text-align: center; color: #2d3a35; font-size: 15px; max-width: 600px; margin: 0 auto;\">Junte-se ao Clube Guebel e receba acesso antecipado a novos lançamentos, descontos exclusivos e conteúdo sobre design sustentável.</p>"
+            }
+          },
+          {
+            "id": "wid_club_spacer",
+            "elType": "widget",
+            "widgetType": "spacer",
+            "settings": {"space": {"unit": "px", "size": 24}}
+          },
+          {
+            "id": "wid_club_btn",
+            "elType": "widget",
+            "widgetType": "button",
+            "settings": {
+              "text": "ADERIR AO CLUBE",
+              "link": {"url": "/clube/", "is_external": false, "nofollow": false},
+              "align": "center",
+              "background_color": "#2d5a45",
+              "button_text_color": "#f5f0e0",
+              "typography_font_family": "Work Sans",
+              "typography_font_size": {"unit": "px", "size": 11},
+              "typography_font_weight": "600",
+              "typography_letter_spacing": {"unit": "em", "size": 0.28},
+              "typography_text_transform": "uppercase"
+            }
+          }
+        ]
+      }
+    ]
+  }
+]

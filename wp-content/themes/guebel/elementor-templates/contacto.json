@@ -1,0 +1,121 @@
+[
+  {
+    "id": "sec_contacto_hero",
+    "elType": "section",
+    "settings": {
+      "background_color": "#2d5a45",
+      "padding": {"unit": "px", "top": "120", "right": "40", "bottom": "120", "left": "40", "isLinked": false},
+      "layout": "full_width"
+    },
+    "elements": [
+      {
+        "id": "col_contacto_hero",
+        "elType": "column",
+        "settings": {"_column_size": 100},
+        "elements": [
+          {
+            "id": "wid_contacto_eyebrow",
+            "elType": "widget",
+            "widgetType": "heading",
+            "settings": {
+              "title": "FALE CONNOSCO",
+              "align": "center",
+              "header_size": "h6",
+              "title_color": "#c8a96e",
+              "typography_font_family": "Work Sans",
+              "typography_font_size": {"unit": "px", "size": 11},
+              "typography_font_weight": "600",
+              "typography_letter_spacing": {"unit": "px", "size": 3}
+            }
+          },
+          {
+            "id": "wid_contacto_spacer1",
+            "elType": "widget",
+            "widgetType": "spacer",
+            "settings": {"space": {"unit": "px", "size": 16}}
+          },
+          {
+            "id": "wid_contacto_h1",
+            "elType": "widget",
+            "widgetType": "heading",
+            "settings": {
+              "title": "Contacto",
+              "align": "center",
+              "header_size": "h1",
+              "title_color": "#f5f0e0",
+              "typography_font_family": "Cormorant Garamond",
+              "typography_font_size": {"unit": "px", "size": 48},
+              "typography_font_weight": "300",
+              "typography_letter_spacing": {"unit": "em", "size": 0.18},
+              "typography_text_transform": "uppercase"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "sec_contacto_content",
+    "elType": "section",
+    "settings": {
+      "background_color": "#f5f0e0",
+      "padding": {"unit": "px", "top": "80", "right": "40", "bottom": "80", "left": "40", "isLinked": false},
+      "structure": "20"
+    },
+    "elements": [
+      {
+        "id": "col_contacto_info",
+        "elType": "column",
+        "settings": {"_column_size": 50},
+        "elements": [
+          {
+            "id": "wid_contacto_h2",
+            "elType": "widget",
+            "widgetType": "heading",
+            "settings": {
+              "title": "Estamos aqui para ajudar",
+              "header_size": "h2",
+              "title_color": "#2d3a35",
+              "typography_font_family": "Cormorant Garamond",
+              "typography_font_size": {"unit": "px", "size": 32},
+              "typography_font_weight": "300",
+              "typography_letter_spacing": {"unit": "em", "size": 0.12},
+              "typography_text_transform": "uppercase"
+            }
+          },
+          {
+            "id": "wid_contacto_info_text",
+            "elType": "widget",
+            "widgetType": "text-editor",
+            "settings": {
+              "editor": "<div style=\"color: #2d3a35; font-size: 15px; line-height: 2;\">\n<p><strong>Email:</strong> geral@guebel.pt</p>\n<p><strong>WhatsApp:</strong> +351 912 345 678</p>\n<p><strong>Horário:</strong> Segunda a Sexta, 10h – 18h</p>\n<p><strong>Morada:</strong> Lisboa, Portugal</p>\n</div>"
+            }
+          },
+          {
+            "id": "wid_contacto_redes",
+            "elType": "widget",
+            "widgetType": "text-editor",
+            "settings": {
+              "editor": "<p style=\"color: #7a8a82; font-size: 14px; margin-top: 20px;\">Siga-nos no Instagram e Pinterest para inspiração de decoração sustentável.</p>"
+            }
+          }
+        ]
+      },
+      {
+        "id": "col_contacto_form",
+        "elType": "column",
+        "settings": {"_column_size": 50},
+        "elements": [
+          {
+            "id": "wid_contacto_form_text",
+            "elType": "widget",
+            "widgetType": "text-editor",
+            "settings": {
+              "editor": "<div style=\"background: #fff; padding: 40px; border-radius: 4px;\">\n<h3 style=\"color: #2d5a45; font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 300; text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 20px;\">Envie-nos uma mensagem</h3>\n<p style=\"color: #7a8a82; font-size: 14px;\">Utilize o formulário de contacto do WordPress ou envie-nos um email directamente para geral@guebel.pt. Respondemos em 24 horas úteis.</p>\n<p style=\"margin-top: 24px;\"><a href=\"mailto:geral@guebel.pt\" style=\"display: inline-block; background: #2d5a45; color: #f5f0e0; padding: 14px 32px; text-decoration: none; font-size: 11px; font-weight: 600; letter-spacing: 0.28em; text-transform: uppercase;\">ENVIAR EMAIL</a></p>\n</div>"
+            }
+          }
+        ]
+      }
+    ]
+  }
+]
