@@ -190,7 +190,7 @@
     "id": "sec_products_003",
     "elType": "section",
     "settings": {
-      "background_color": "#2d3a35",
+      "background_color": "#efe8d6",
       "padding": {"unit": "px", "top": "100", "right": "40", "bottom": "100", "left": "40", "isLinked": false},
       "layout": "full_width"
     },
@@ -201,14 +201,35 @@
         "settings": {"_column_size": 100},
         "elements": [
           {
+            "id": "wid_products_eyebrow",
+            "elType": "widget",
+            "widgetType": "heading",
+            "settings": {
+              "title": "A NOSSA SELECÇÃO",
+              "align": "center",
+              "header_size": "h6",
+              "title_color": "#c8a96e",
+              "typography_font_family": "Work Sans",
+              "typography_font_size": {"unit": "px", "size": 11},
+              "typography_font_weight": "600",
+              "typography_letter_spacing": {"unit": "px", "size": 3}
+            }
+          },
+          {
+            "id": "wid_products_eyebrow_spacer",
+            "elType": "widget",
+            "widgetType": "spacer",
+            "settings": {"space": {"unit": "px", "size": 12}}
+          },
+          {
             "id": "wid_products_h2",
             "elType": "widget",
             "widgetType": "heading",
             "settings": {
-              "title": "As nossas peças",
+              "title": "Destaques",
               "align": "center",
               "header_size": "h2",
-              "title_color": "#f5f0e0",
+              "title_color": "#2d3a35",
               "typography_font_family": "Cormorant Garamond",
               "typography_font_size": {"unit": "px", "size": 36},
               "typography_font_weight": "300",

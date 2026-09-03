@@ -25,10 +25,10 @@ add_action( 'wp_head', 'guebel_preload_fonts', 1 );
  * Enqueue front-end styles.
  */
 function guebel_enqueue_styles() {
-	// Google Fonts: Cormorant Garamond (display) + Inter (body).
+	// Google Fonts: Cormorant Garamond (display) + Work Sans (body).
 	wp_enqueue_style(
 		'guebel-fonts',
-		'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap',
+		'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Work+Sans:wght@300;400;500;600;700&display=swap',
 		array(),
 		null
 	);

@@ -55,6 +55,17 @@ function guebel_customize_register( $wp_customize ) {
 		'type'    => 'textarea',
 	) );
 
+	$wp_customize->add_setting( 'guebel_newsletter_text', array(
+		'default'           => __( 'Subscreva e receba novidades, lançamentos e ofertas exclusivas.', 'guebel' ),
+		'sanitize_callback' => 'sanitize_text_field',
+	) );
+
+	$wp_customize->add_control( 'guebel_newsletter_text', array(
+		'label'   => __( 'Footer Newsletter Text', 'guebel' ),
+		'section' => 'guebel_brand',
+		'type'    => 'textarea',
+	) );
+
 	// --- Section: Contact Info ---
 	$wp_customize->add_section( 'guebel_contact', array(
 		'title' => __( 'Contact Information', 'guebel' ),
