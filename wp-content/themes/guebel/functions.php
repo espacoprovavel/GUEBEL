@@ -235,12 +235,10 @@ if ( ! function_exists( 'guebel_cart_count_markup' ) ) {
 if ( ! function_exists( 'guebel_fallback_menu' ) ) {
 	function guebel_fallback_menu() {
 		echo '<ul>';
-		if ( guebel_has_woocommerce() ) {
-			echo '<li><a href="' . esc_url( guebel_shop_url() ) . '">' . esc_html__( 'Shop', 'guebel' ) . '</a></li>';
-		}
-		echo '<li><a href="' . esc_url( home_url( '/sobre/' ) ) . '">' . esc_html__( 'About', 'guebel' ) . '</a></li>';
-		echo '<li><a href="' . esc_url( home_url( '/clube/' ) ) . '">' . esc_html__( 'Club', 'guebel' ) . '</a></li>';
-		echo '<li><a href="' . esc_url( home_url( '/contacto/' ) ) . '">' . esc_html__( 'Contact', 'guebel' ) . '</a></li>';
+		echo '<li><a href="' . esc_url( guebel_shop_url() ) . '">' . esc_html__( 'Loja', 'guebel' ) . '</a></li>';
+		echo '<li><a href="' . esc_url( home_url( '/sobre/' ) ) . '">' . esc_html__( 'Sobre', 'guebel' ) . '</a></li>';
+		echo '<li><a href="' . esc_url( home_url( '/clube/' ) ) . '">' . esc_html__( 'Clube', 'guebel' ) . '</a></li>';
+		echo '<li><a href="' . esc_url( home_url( '/contacto/' ) ) . '">' . esc_html__( 'Contacto', 'guebel' ) . '</a></li>';
 		echo '</ul>';
 	}
 }

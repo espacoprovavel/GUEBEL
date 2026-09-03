@@ -11,15 +11,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Check if WooCommerce is active.
- *
- * @return bool
- */
-function guebel_has_woocommerce() {
-	return class_exists( 'WooCommerce' );
-}
-
-/**
  * Remove default WooCommerce styles selectively.
  *
  * Keeps the general stylesheet but removes layout and smallscreen styles
@@ -177,21 +168,6 @@ function guebel_cart_url() {
  */
 function guebel_account_url() {
 	return guebel_has_woocommerce() ? wc_get_page_permalink( 'myaccount' ) : wp_login_url();
-}
-
-/**
- * Get shop page URL (falls back to homepage anchor).
- *
- * @return string
- */
-function guebel_shop_url() {
-	if ( guebel_has_woocommerce() ) {
-		$shop = wc_get_page_permalink( 'shop' );
-		if ( $shop ) {
-			return $shop;
-		}
-	}
-	return home_url( '/#shop' );
 }
 
 /**
@@ -398,14 +374,12 @@ add_filter( 'woocommerce_add_to_cart_fragments', 'guebel_mini_cart_fragment' );
  * Fallback menu for navigation when no menu is assigned.
  */
 function guebel_fallback_menu() {
-	?>
-	<nav class="site-nav" role="navigation" aria-label="<?php esc_attr_e( 'Primary Navigation', 'guebel' ); ?>">
-		<a href="<?php echo esc_url( guebel_shop_url() ); ?>" class="wide-sm"><?php esc_html_e( 'Shop', 'guebel' ); ?></a>
-		<a href="<?php echo esc_url( home_url( '/#about' ) ); ?>" class="wide-sm"><?php esc_html_e( 'About', 'guebel' ); ?></a>
-		<a href="<?php echo esc_url( home_url( '/#club' ) ); ?>" class="wide-sm"><?php esc_html_e( 'Club', 'guebel' ); ?></a>
-		<a href="<?php echo esc_url( home_url( '/#contact' ) ); ?>" class="wide-sm"><?php esc_html_e( 'Contact', 'guebel' ); ?></a>
-	</nav>
-	<?php
+	echo '<ul>';
+	echo '<li><a href="' . esc_url( guebel_shop_url() ) . '">' . esc_html__( 'Loja', 'guebel' ) . '</a></li>';
+	echo '<li><a href="' . esc_url( home_url( '/sobre/' ) ) . '">' . esc_html__( 'Sobre', 'guebel' ) . '</a></li>';
+	echo '<li><a href="' . esc_url( home_url( '/clube/' ) ) . '">' . esc_html__( 'Clube', 'guebel' ) . '</a></li>';
+	echo '<li><a href="' . esc_url( home_url( '/contacto/' ) ) . '">' . esc_html__( 'Contacto', 'guebel' ) . '</a></li>';
+	echo '</ul>';
 }
 
 /**
