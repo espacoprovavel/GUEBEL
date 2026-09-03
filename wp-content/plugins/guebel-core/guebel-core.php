@@ -163,11 +163,9 @@ final class Guebel_Core {
 				<p>
 					<?php
 					printf(
-						/* translators: %s: WooCommerce plugin name */
-						esc_html__( '%1$s recomenda a utiliza%2$s%3$o do %4$s para funcionalidades completas de e-commerce.', 'guebel-core' ),
+						/* translators: %1$s: plugin name, %2$s: WooCommerce link */
+						'%1$s ' . esc_html__( 'recomenda a utilização do', 'guebel-core' ) . ' %2$s ' . esc_html__( 'para funcionalidades completas de e-commerce.', 'guebel-core' ),
 						'<strong>Guebel Core</strong>',
-						'&ccedil;',
-						'&atilde;',
 						'<a href="https://woocommerce.com/" target="_blank">WooCommerce</a>'
 					);
 					?>
