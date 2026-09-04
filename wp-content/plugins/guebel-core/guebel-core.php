@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Guebel Core
  * Description: Core functionality for the Guebel store - custom post types, taxonomies, widgets, contact form, RGPD newsletter, and integrations
- * Version: 1.2.0
+ * Version: 1.3.0
  * Author: Guebel
  * Text Domain: guebel-core
  * Domain Path: /languages
@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'GUEBEL_CORE_VERSION', '1.2.0' );
+define( 'GUEBEL_CORE_VERSION', '1.3.0' );
 define( 'GUEBEL_CORE_PLUGIN_FILE', __FILE__ );
 define( 'GUEBEL_CORE_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'GUEBEL_CORE_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
@@ -73,6 +73,7 @@ final class Guebel_Core {
 			'includes/class-shortcodes.php',
 			'includes/class-ajax-handlers.php',
 			'includes/class-submissions.php',
+			'includes/class-smtp.php',
 		);
 
 		foreach ( $files as $file ) {
@@ -238,6 +239,9 @@ final class Guebel_Core {
 		if ( class_exists( 'Guebel_Submissions' ) ) {
 			new Guebel_Submissions();
 		}
+		if ( class_exists( 'Guebel_SMTP' ) ) {
+			new Guebel_SMTP();
+		}
 	}
 
 	/**
@@ -287,6 +291,7 @@ function guebel_core_uninstall() {
 	delete_option( 'guebel_settings' );
 	delete_option( 'guebel_core_version' );
 	delete_option( 'guebel_demo_content_installed' );
+	delete_option( 'guebel_smtp' );
 
 	global $wpdb;
 	$wpdb->query( "DROP TABLE IF EXISTS {$wpdb->prefix}guebel_newsletter" ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery
