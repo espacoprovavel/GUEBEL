@@ -72,7 +72,8 @@ class Guebel_Admin_Settings {
 			'guebel-settings'
 		);
 
-		$this->add_field( 'email', __( 'Email', 'guebel-core' ), 'email', 'guebel_contact' );
+		$this->add_field( 'contact_recipient', __( 'Email para receber contactos', 'guebel-core' ), 'email', 'guebel_contact' );
+		$this->add_field( 'email', __( 'Email (público)', 'guebel-core' ), 'email', 'guebel_contact' );
 		$this->add_field( 'phone', __( 'Telefone', 'guebel-core' ), 'text', 'guebel_contact' );
 		$this->add_field( 'whatsapp', __( 'WhatsApp', 'guebel-core' ), 'text', 'guebel_contact' );
 		$this->add_field( 'address', __( 'Morada', 'guebel-core' ), 'text', 'guebel_contact' );
@@ -254,9 +255,12 @@ class Guebel_Admin_Settings {
 			}
 		}
 
-		// Email.
+		// Email fields.
 		if ( isset( $input['email'] ) ) {
 			$sanitized['email'] = sanitize_email( $input['email'] );
+		}
+		if ( isset( $input['contact_recipient'] ) ) {
+			$sanitized['contact_recipient'] = sanitize_email( $input['contact_recipient'] );
 		}
 
 		// URL fields.

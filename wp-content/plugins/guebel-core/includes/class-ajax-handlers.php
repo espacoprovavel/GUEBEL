@@ -177,35 +177,48 @@ class Guebel_Ajax_Handlers {
 			$this->store_newsletter_optin( $email, $name );
 		}
 
-		// Recipient: plugin setting, then Customizer email, then admin email.
-		$to = Guebel_Core::get_option( 'email' );
-		if ( empty( $to ) || ! is_email( $to ) ) {
-			$to = get_theme_mod( 'guebel_email', '' );
-		}
-		if ( empty( $to ) || ! is_email( $to ) ) {
-			$to = get_option( 'admin_email' );
-		}
+		$ip = $this->get_client_ip();
 
-		$site_name = get_bloginfo( 'name' );
-		/* translators: %s: visitor name */
-		$subject = sprintf( __( 'Novo contacto do site — %s', 'guebel-core' ), $name );
+		// 1) Always store the submission so nothing is ever lost, even if
+		// the mail server fails. This is what powers the admin inbox + export.
+		global $wpdb;
+		$stored = $wpdb->insert( // phpcs:ignore WordPress.DB.DirectDatabaseQuery
+			$wpdb->prefix . 'guebel_contacts',
+			array(
+				'name'       => $name,
+				'email'      => $email,
+				'phone'      => $phone,
+				'message'    => $message,
+				'marketing'  => $marketing ? 1 : 0,
+				'consent'    => 1,
+				'consent_ip' => $ip,
+				'status'     => 'new',
+				'created_at' => current_time( 'mysql' ),
+			),
+			array( '%s', '%s', '%s', '%s', '%d', '%d', '%s', '%s', '%s' )
+		);
 
-		$body  = __( 'Nova mensagem do formulário de contacto:', 'guebel-core' ) . "\n\n";
-		$body .= __( 'Nome', 'guebel-core' ) . ': ' . $name . "\n";
-		$body .= __( 'Email', 'guebel-core' ) . ': ' . $email . "\n";
-		if ( $phone ) {
-			$body .= __( 'Telefone', 'guebel-core' ) . ': ' . $phone . "\n";
-		}
-		$body .= __( 'Mensagem', 'guebel-core' ) . ":\n" . $message . "\n\n";
-		$body .= __( 'Marketing autorizado', 'guebel-core' ) . ': ' . ( $marketing ? __( 'Sim', 'guebel-core' ) : __( 'Não', 'guebel-core' ) ) . "\n";
-		$body .= 'IP: ' . $this->get_client_ip() . "\n";
+		// 2) Notify the store (best effort — a mail failure does not lose data).
+		$to = $this->contact_recipient();
 
 		$headers = array(
-			'Content-Type: text/plain; charset=UTF-8',
+			'Content-Type: text/html; charset=UTF-8',
 			'Reply-To: ' . $name . ' <' . $email . '>',
 		);
 
-		$sent = wp_mail( $to, $subject, $body, $headers );
+		/* translators: %s: visitor name */
+		$subject = sprintf( __( 'Novo contacto do site — %s', 'guebel-core' ), $name );
+		wp_mail( $to, $subject, $this->contact_email_admin( $name, $email, $phone, $message, $marketing, $ip ), $headers );
+
+		// 3) Send a branded confirmation to the customer.
+		$cust_headers = array( 'Content-Type: text/html; charset=UTF-8' );
+		wp_mail(
+			$email,
+			/* translators: %s: store name */
+			sprintf( __( 'Recebemos a sua mensagem — %s', 'guebel-core' ), get_bloginfo( 'name' ) ),
+			$this->contact_email_customer( $name, $message ),
+			$cust_headers
+		);
 
 		/**
 		 * Fires after a contact form submission (regardless of email result).
@@ -223,15 +236,87 @@ class Guebel_Ajax_Handlers {
 			)
 		);
 
-		if ( ! $sent ) {
+		if ( false === $stored ) {
 			wp_send_json_error(
-				array( 'message' => __( 'Não foi possível enviar a mensagem. Por favor, tente mais tarde ou contacte-nos por email.', 'guebel-core' ) )
+				array( 'message' => __( 'Não foi possível registar a mensagem. Por favor, tente mais tarde.', 'guebel-core' ) )
 			);
 		}
 
 		wp_send_json_success(
 			array( 'message' => __( 'Mensagem enviada com sucesso! Entraremos em contacto em breve.', 'guebel-core' ) )
 		);
+	}
+
+	/**
+	 * Resolve the recipient email for contact notifications.
+	 *
+	 * Order: dedicated setting, then general store email, then Customizer, then admin email.
+	 *
+	 * @return string
+	 */
+	private function contact_recipient() {
+		$to = Guebel_Core::get_option( 'contact_recipient' );
+		if ( empty( $to ) || ! is_email( $to ) ) {
+			$to = Guebel_Core::get_option( 'email' );
+		}
+		if ( empty( $to ) || ! is_email( $to ) ) {
+			$to = get_theme_mod( 'guebel_email', '' );
+		}
+		if ( empty( $to ) || ! is_email( $to ) ) {
+			$to = get_option( 'admin_email' );
+		}
+		return $to;
+	}
+
+	/**
+	 * Wrap email content in a branded HTML shell.
+	 *
+	 * @param string $inner Inner HTML.
+	 * @return string
+	 */
+	private function email_shell( $inner ) {
+		$name = esc_html( get_bloginfo( 'name' ) );
+		return '<!DOCTYPE html><html><body style="margin:0;padding:0;background:#f4eddb;font-family:Helvetica,Arial,sans-serif;">'
+			. '<table width="100%" cellpadding="0" cellspacing="0" style="background:#f4eddb;padding:32px 0;"><tr><td align="center">'
+			. '<table width="600" cellpadding="0" cellspacing="0" style="max-width:600px;background:#ffffff;border-radius:4px;overflow:hidden;">'
+			. '<tr><td style="background:#33604e;padding:28px 32px;text-align:center;">'
+			. '<span style="color:#f4eddb;font-size:20px;letter-spacing:6px;text-transform:uppercase;">' . $name . '</span></td></tr>'
+			. '<tr><td style="padding:32px;color:#3a4a44;font-size:15px;line-height:1.7;">' . $inner . '</td></tr>'
+			. '<tr><td style="background:#efe7d0;padding:18px 32px;text-align:center;color:#8a938c;font-size:12px;">&copy; '
+			. esc_html( gmdate( 'Y' ) ) . ' ' . $name . '</td></tr>'
+			. '</table></td></tr></table></body></html>';
+	}
+
+	/**
+	 * Build the admin notification email (HTML).
+	 *
+	 * @return string
+	 */
+	private function contact_email_admin( $name, $email, $phone, $message, $marketing, $ip ) {
+		$rows  = '<h2 style="color:#33604e;font-size:18px;margin:0 0 20px;">' . esc_html__( 'Novo contacto do site', 'guebel-core' ) . '</h2>';
+		$rows .= '<p style="margin:0 0 6px;"><strong>' . esc_html__( 'Nome', 'guebel-core' ) . ':</strong> ' . esc_html( $name ) . '</p>';
+		$rows .= '<p style="margin:0 0 6px;"><strong>' . esc_html__( 'Email', 'guebel-core' ) . ':</strong> <a href="mailto:' . esc_attr( $email ) . '">' . esc_html( $email ) . '</a></p>';
+		if ( $phone ) {
+			$rows .= '<p style="margin:0 0 6px;"><strong>' . esc_html__( 'Telefone', 'guebel-core' ) . ':</strong> ' . esc_html( $phone ) . '</p>';
+		}
+		$rows .= '<p style="margin:16px 0 6px;"><strong>' . esc_html__( 'Mensagem', 'guebel-core' ) . ':</strong></p>';
+		$rows .= '<div style="background:#f7f3e8;border-left:3px solid #33604e;padding:14px 16px;color:#3a4a44;">' . nl2br( esc_html( $message ) ) . '</div>';
+		$rows .= '<p style="margin:18px 0 0;color:#8a938c;font-size:12px;">' . esc_html__( 'Marketing autorizado', 'guebel-core' ) . ': ' . ( $marketing ? esc_html__( 'Sim', 'guebel-core' ) : esc_html__( 'Não', 'guebel-core' ) ) . ' &middot; IP: ' . esc_html( $ip ) . '</p>';
+		return $this->email_shell( $rows );
+	}
+
+	/**
+	 * Build the customer confirmation email (HTML).
+	 *
+	 * @return string
+	 */
+	private function contact_email_customer( $name, $message ) {
+		$inner  = '<p style="margin:0 0 16px;font-size:16px;color:#33604e;">' . sprintf( /* translators: %s: customer name */ esc_html__( 'Olá %s,', 'guebel-core' ), esc_html( $name ) ) . '</p>';
+		$inner .= '<p style="margin:0 0 16px;">' . esc_html__( 'Obrigado pela sua mensagem! Recebemos o seu contacto e a nossa equipa responderá o mais breve possível.', 'guebel-core' ) . '</p>';
+		$inner .= '<p style="margin:0 0 6px;color:#8a938c;font-size:13px;">' . esc_html__( 'Cópia da sua mensagem:', 'guebel-core' ) . '</p>';
+		$inner .= '<div style="background:#f7f3e8;border-left:3px solid #c8a96e;padding:14px 16px;color:#3a4a44;">' . nl2br( esc_html( $message ) ) . '</div>';
+		$inner .= '<p style="margin:24px 0 0;">' . esc_html__( 'Com os melhores cumprimentos,', 'guebel-core' ) . '<br><strong>' . esc_html( get_bloginfo( 'name' ) ) . '</strong></p>';
+		return $this->email_shell( $inner );
 	}
 
 	/**

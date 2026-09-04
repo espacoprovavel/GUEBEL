@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Guebel Core
  * Description: Core functionality for the Guebel store - custom post types, taxonomies, widgets, contact form, RGPD newsletter, and integrations
- * Version: 1.1.0
+ * Version: 1.2.0
  * Author: Guebel
  * Text Domain: guebel-core
  * Domain Path: /languages
@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'GUEBEL_CORE_VERSION', '1.1.0' );
+define( 'GUEBEL_CORE_VERSION', '1.2.0' );
 define( 'GUEBEL_CORE_PLUGIN_FILE', __FILE__ );
 define( 'GUEBEL_CORE_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'GUEBEL_CORE_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
@@ -72,6 +72,7 @@ final class Guebel_Core {
 			'includes/class-admin-settings.php',
 			'includes/class-shortcodes.php',
 			'includes/class-ajax-handlers.php',
+			'includes/class-submissions.php',
 		);
 
 		foreach ( $files as $file ) {
@@ -108,6 +109,7 @@ final class Guebel_Core {
 
 		flush_rewrite_rules();
 		$this->create_newsletter_table();
+		$this->create_contacts_table();
 		update_option( 'guebel_core_version', GUEBEL_CORE_VERSION );
 	}
 
@@ -145,6 +147,34 @@ final class Guebel_Core {
 	}
 
 	/**
+	 * Create the contact submissions table.
+	 */
+	private function create_contacts_table() {
+		global $wpdb;
+
+		$table_name      = $wpdb->prefix . 'guebel_contacts';
+		$charset_collate = $wpdb->get_charset_collate();
+
+		$sql = "CREATE TABLE {$table_name} (
+			id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+			name varchar(255) DEFAULT '',
+			email varchar(255) NOT NULL,
+			phone varchar(60) DEFAULT '',
+			message text,
+			marketing tinyint(1) NOT NULL DEFAULT 0,
+			consent tinyint(1) NOT NULL DEFAULT 0,
+			consent_ip varchar(45) DEFAULT '',
+			status varchar(20) NOT NULL DEFAULT 'new',
+			created_at datetime NOT NULL,
+			PRIMARY KEY (id),
+			KEY email (email)
+		) {$charset_collate};";
+
+		require_once ABSPATH . 'wp-admin/includes/upgrade.php';
+		dbDelta( $sql );
+	}
+
+	/**
 	 * Run database upgrades when the stored version is behind.
 	 *
 	 * Ensures the newsletter table gains the RGPD consent columns on
@@ -156,6 +186,7 @@ final class Guebel_Core {
 			return;
 		}
 		$this->create_newsletter_table();
+		$this->create_contacts_table();
 		update_option( 'guebel_core_version', GUEBEL_CORE_VERSION );
 	}
 
@@ -203,6 +234,9 @@ final class Guebel_Core {
 		}
 		if ( class_exists( 'Guebel_Ajax_Handlers' ) ) {
 			new Guebel_Ajax_Handlers();
+		}
+		if ( class_exists( 'Guebel_Submissions' ) ) {
+			new Guebel_Submissions();
 		}
 	}
 
@@ -256,6 +290,7 @@ function guebel_core_uninstall() {
 
 	global $wpdb;
 	$wpdb->query( "DROP TABLE IF EXISTS {$wpdb->prefix}guebel_newsletter" ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery
+	$wpdb->query( "DROP TABLE IF EXISTS {$wpdb->prefix}guebel_contacts" ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery
 
 	$post_types = array( 'guebel_collection', 'guebel_testimonial' );
 	foreach ( $post_types as $post_type ) {
