@@ -1,0 +1,364 @@
+[
+  {
+    "id": "sec_sobre_hero",
+    "elType": "section",
+    "settings": {
+      "background_background": "classic",
+      "background_color": "#2d5a45",
+      "padding": {
+        "unit": "px",
+        "top": "120",
+        "right": "40",
+        "bottom": "120",
+        "left": "40",
+        "isLinked": false
+      },
+      "layout": "full_width"
+    },
+    "elements": [
+      {
+        "id": "col_sobre_hero",
+        "elType": "column",
+        "settings": {
+          "_column_size": 100
+        },
+        "elements": [
+          {
+            "id": "wid_sobre_eyebrow",
+            "elType": "widget",
+            "widgetType": "heading",
+            "settings": {
+              "title": "A NOSSA HISTÓRIA",
+              "align": "center",
+              "header_size": "h6",
+              "title_color": "#c8a96e",
+              "typography_font_family": "Work Sans",
+              "typography_font_size": {
+                "unit": "px",
+                "size": 11
+              },
+              "typography_font_weight": "600",
+              "typography_letter_spacing": {
+                "unit": "px",
+                "size": 3
+              }
+            }
+          },
+          {
+            "id": "wid_sobre_spacer1",
+            "elType": "widget",
+            "widgetType": "spacer",
+            "settings": {
+              "space": {
+                "unit": "px",
+                "size": 16
+              }
+            }
+          },
+          {
+            "id": "wid_sobre_h1",
+            "elType": "widget",
+            "widgetType": "heading",
+            "settings": {
+              "title": "A paixão pelo design sustentável",
+              "align": "center",
+              "header_size": "h1",
+              "title_color": "#f5f0e0",
+              "typography_font_family": "Work Sans",
+              "typography_font_size": {
+                "unit": "px",
+                "size": 48
+              },
+              "typography_font_weight": "300",
+              "typography_letter_spacing": {
+                "unit": "em",
+                "size": 0.18
+              },
+              "typography_text_transform": "uppercase"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "sec_sobre_missao",
+    "elType": "section",
+    "settings": {
+      "background_background": "classic",
+      "background_color": "#f5f0e0",
+      "padding": {
+        "unit": "px",
+        "top": "100",
+        "right": "40",
+        "bottom": "100",
+        "left": "40",
+        "isLinked": false
+      },
+      "structure": "20"
+    },
+    "elements": [
+      {
+        "id": "col_missao_text",
+        "elType": "column",
+        "settings": {
+          "_column_size": 50
+        },
+        "elements": [
+          {
+            "id": "wid_missao_eyebrow",
+            "elType": "widget",
+            "widgetType": "heading",
+            "settings": {
+              "title": "A NOSSA MISSÃO",
+              "header_size": "h6",
+              "title_color": "#c8a96e",
+              "typography_font_family": "Work Sans",
+              "typography_font_size": {
+                "unit": "px",
+                "size": 11
+              },
+              "typography_font_weight": "600",
+              "typography_letter_spacing": {
+                "unit": "px",
+                "size": 3
+              }
+            }
+          },
+          {
+            "id": "wid_missao_h2",
+            "elType": "widget",
+            "widgetType": "heading",
+            "settings": {
+              "title": "Transformar plástico reciclado em arte funcional",
+              "header_size": "h2",
+              "title_color": "#2d3a35",
+              "typography_font_family": "Work Sans",
+              "typography_font_size": {
+                "unit": "px",
+                "size": 32
+              },
+              "typography_font_weight": "300",
+              "typography_letter_spacing": {
+                "unit": "em",
+                "size": 0.12
+              },
+              "typography_text_transform": "uppercase"
+            }
+          },
+          {
+            "id": "wid_missao_text",
+            "elType": "widget",
+            "widgetType": "text-editor",
+            "settings": {
+              "editor": "<p style=\"color: #7a8a82; font-size: 15px; line-height: 1.8;\">A Guebel nasceu da convicção de que é possível criar objectos bonitos e funcionais a partir de materiais reciclados. Cada peça é desenhada em Portugal e impressa em 3D com filamentos produzidos a partir de plásticos recuperados.</p><p style=\"color: #7a8a82; font-size: 15px; line-height: 1.8;\">Produzimos por encomenda para eliminar desperdício. Cada objecto que sai das nossas impressoras foi pedido por alguém, pensado para um espaço, feito com propósito.</p>"
+            }
+          }
+        ]
+      },
+      {
+        "id": "col_missao_img",
+        "elType": "column",
+        "settings": {
+          "_column_size": 50
+        },
+        "elements": [
+          {
+            "id": "wid_missao_img",
+            "elType": "widget",
+            "widgetType": "image",
+            "settings": {
+              "image": {
+                "url": "",
+                "id": ""
+              },
+              "image_size": "large"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "sec_sobre_valores",
+    "elType": "section",
+    "settings": {
+      "background_background": "classic",
+      "background_color": "#2d3a35",
+      "padding": {
+        "unit": "px",
+        "top": "100",
+        "right": "40",
+        "bottom": "100",
+        "left": "40",
+        "isLinked": false
+      },
+      "layout": "full_width"
+    },
+    "elements": [
+      {
+        "id": "col_valores_full",
+        "elType": "column",
+        "settings": {
+          "_column_size": 100
+        },
+        "elements": [
+          {
+            "id": "wid_valores_h2",
+            "elType": "widget",
+            "widgetType": "heading",
+            "settings": {
+              "title": "Os nossos valores",
+              "align": "center",
+              "header_size": "h2",
+              "title_color": "#f5f0e0",
+              "typography_font_family": "Work Sans",
+              "typography_font_size": {
+                "unit": "px",
+                "size": 36
+              },
+              "typography_font_weight": "300",
+              "typography_letter_spacing": {
+                "unit": "em",
+                "size": 0.12
+              },
+              "typography_text_transform": "uppercase"
+            }
+          },
+          {
+            "id": "wid_valores_spacer",
+            "elType": "widget",
+            "widgetType": "spacer",
+            "settings": {
+              "space": {
+                "unit": "px",
+                "size": 40
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "sec_sobre_valores_cols",
+    "elType": "section",
+    "settings": {
+      "background_background": "classic",
+      "background_color": "#2d3a35",
+      "padding": {
+        "unit": "px",
+        "top": "0",
+        "right": "40",
+        "bottom": "100",
+        "left": "40",
+        "isLinked": false
+      },
+      "structure": "30"
+    },
+    "elements": [
+      {
+        "id": "col_valor_1",
+        "elType": "column",
+        "settings": {
+          "_column_size": 33
+        },
+        "elements": [
+          {
+            "id": "wid_val1_h3",
+            "elType": "widget",
+            "widgetType": "heading",
+            "settings": {
+              "title": "Sustentabilidade",
+              "align": "center",
+              "header_size": "h3",
+              "title_color": "#c8a96e",
+              "typography_font_family": "Work Sans",
+              "typography_font_size": {
+                "unit": "px",
+                "size": 24
+              },
+              "typography_font_weight": "300"
+            }
+          },
+          {
+            "id": "wid_val1_text",
+            "elType": "widget",
+            "widgetType": "text-editor",
+            "settings": {
+              "editor": "<p style=\"text-align: center; color: #b2d8d0; font-size: 14px; line-height: 1.7;\">Usamos plásticos reciclados e produzimos por encomenda para zero desperdício. Cada peça é um passo para um mundo mais limpo.</p>"
+            }
+          }
+        ]
+      },
+      {
+        "id": "col_valor_2",
+        "elType": "column",
+        "settings": {
+          "_column_size": 33
+        },
+        "elements": [
+          {
+            "id": "wid_val2_h3",
+            "elType": "widget",
+            "widgetType": "heading",
+            "settings": {
+              "title": "Arte portuguesa",
+              "align": "center",
+              "header_size": "h3",
+              "title_color": "#c8a96e",
+              "typography_font_family": "Work Sans",
+              "typography_font_size": {
+                "unit": "px",
+                "size": 24
+              },
+              "typography_font_weight": "300"
+            }
+          },
+          {
+            "id": "wid_val2_text",
+            "elType": "widget",
+            "widgetType": "text-editor",
+            "settings": {
+              "editor": "<p style=\"text-align: center; color: #b2d8d0; font-size: 14px; line-height: 1.7;\">Desenhado e produzido em Portugal. Cada peça combina tradição artesanal com tecnologia de impressão 3D.</p>"
+            }
+          }
+        ]
+      },
+      {
+        "id": "col_valor_3",
+        "elType": "column",
+        "settings": {
+          "_column_size": 33
+        },
+        "elements": [
+          {
+            "id": "wid_val3_h3",
+            "elType": "widget",
+            "widgetType": "heading",
+            "settings": {
+              "title": "Feito para si",
+              "align": "center",
+              "header_size": "h3",
+              "title_color": "#c8a96e",
+              "typography_font_family": "Work Sans",
+              "typography_font_size": {
+                "unit": "px",
+                "size": 24
+              },
+              "typography_font_weight": "300"
+            }
+          },
+          {
+            "id": "wid_val3_text",
+            "elType": "widget",
+            "widgetType": "text-editor",
+            "settings": {
+              "editor": "<p style=\"text-align: center; color: #b2d8d0; font-size: 14px; line-height: 1.7;\">Produção por encomenda. Cada peça é feita especificamente para si, com o cuidado e a atenção que merece.</p>"
+            }
+          }
+        ]
+      }
+    ]
+  }
+]

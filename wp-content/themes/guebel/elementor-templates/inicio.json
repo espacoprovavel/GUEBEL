@@ -1,0 +1,916 @@
+[
+  {
+    "id": "sec_hero_001",
+    "elType": "section",
+    "settings": {
+      "background_background": "classic",
+      "background_image": {
+        "url": "{{THEME_URI}}/assets/img/hero.jpg",
+        "id": ""
+      },
+      "background_position": "center center",
+      "background_repeat": "no-repeat",
+      "background_size": "cover",
+      "background_overlay_background": "classic",
+      "background_overlay_color": "#1e3a2c",
+      "background_overlay_opacity": {
+        "unit": "px",
+        "size": 0.15
+      },
+      "height": "min-height",
+      "custom_height": {
+        "unit": "vh",
+        "size": 88
+      },
+      "content_position": "middle",
+      "padding": {
+        "unit": "px",
+        "top": "40",
+        "right": "80",
+        "bottom": "40",
+        "left": "80",
+        "isLinked": false
+      },
+      "layout": "full_width"
+    },
+    "elements": [
+      {
+        "id": "col_hero_001",
+        "elType": "column",
+        "settings": {
+          "_column_size": 50,
+          "_inline_size": 45
+        },
+        "elements": [
+          {
+            "id": "wid_hero_h1",
+            "elType": "widget",
+            "widgetType": "heading",
+            "settings": {
+              "title": "Vasos para o futuro",
+              "align": "left",
+              "header_size": "h1",
+              "title_color": "#ffffff",
+              "typography_typography": "custom",
+              "typography_font_family": "Work Sans",
+              "typography_font_size": {
+                "unit": "px",
+                "size": 46
+              },
+              "typography_font_weight": "300",
+              "typography_letter_spacing": {
+                "unit": "em",
+                "size": 0.22
+              },
+              "typography_text_transform": "uppercase",
+              "typography_line_height": {
+                "unit": "em",
+                "size": 1.3
+              }
+            }
+          },
+          {
+            "id": "wid_hero_spacer",
+            "elType": "widget",
+            "widgetType": "spacer",
+            "settings": {
+              "space": {
+                "unit": "px",
+                "size": 28
+              }
+            }
+          },
+          {
+            "id": "wid_hero_btn",
+            "elType": "widget",
+            "widgetType": "button",
+            "settings": {
+              "text": "VER LOJA",
+              "link": {
+                "url": "/loja/",
+                "is_external": false,
+                "nofollow": false
+              },
+              "align": "left",
+              "background_background": "classic",
+              "background_color": "rgba(255,255,255,0)",
+              "button_text_color": "#ffffff",
+              "border_border": "solid",
+              "border_width": {
+                "unit": "px",
+                "top": "1",
+                "right": "1",
+                "bottom": "1",
+                "left": "1",
+                "isLinked": true
+              },
+              "border_color": "#ffffff",
+              "border_radius": {
+                "unit": "px",
+                "top": "0",
+                "right": "0",
+                "bottom": "0",
+                "left": "0",
+                "isLinked": true
+              },
+              "text_padding": {
+                "unit": "px",
+                "top": "14",
+                "right": "40",
+                "bottom": "14",
+                "left": "40",
+                "isLinked": false
+              },
+              "typography_typography": "custom",
+              "typography_font_family": "Work Sans",
+              "typography_font_size": {
+                "unit": "px",
+                "size": 11
+              },
+              "typography_font_weight": "500",
+              "typography_letter_spacing": {
+                "unit": "em",
+                "size": 0.28
+              },
+              "typography_text_transform": "uppercase"
+            }
+          }
+        ]
+      },
+      {
+        "id": "col_hero_spacer",
+        "elType": "column",
+        "settings": {
+          "_column_size": 50,
+          "_inline_size": 55
+        },
+        "elements": []
+      }
+    ]
+  },
+  {
+    "id": "sec_about_002",
+    "elType": "section",
+    "settings": {
+      "background_background": "classic",
+      "background_color": "#f4eddb",
+      "gap": "no",
+      "padding": {
+        "unit": "px",
+        "top": "0",
+        "right": "0",
+        "bottom": "0",
+        "left": "0",
+        "isLinked": true
+      },
+      "structure": "20"
+    },
+    "elements": [
+      {
+        "id": "col_about_left",
+        "elType": "column",
+        "settings": {
+          "_column_size": 50,
+          "background_background": "classic",
+          "background_image": {
+            "url": "{{THEME_URI}}/assets/img/about.jpg",
+            "id": ""
+          },
+          "background_position": "center center",
+          "background_size": "cover",
+          "min_height": {
+            "unit": "px",
+            "size": 620
+          }
+        },
+        "elements": []
+      },
+      {
+        "id": "col_about_right",
+        "elType": "column",
+        "settings": {
+          "_column_size": 50,
+          "content_position": "center",
+          "padding": {
+            "unit": "px",
+            "top": "80",
+            "right": "70",
+            "bottom": "80",
+            "left": "70",
+            "isLinked": false
+          }
+        },
+        "elements": [
+          {
+            "id": "wid_about_eyebrow",
+            "elType": "widget",
+            "widgetType": "heading",
+            "settings": {
+              "title": "GUEBEL",
+              "align": "left",
+              "header_size": "h6",
+              "title_color": "#b89b6a",
+              "typography_typography": "custom",
+              "typography_font_family": "Work Sans",
+              "typography_font_size": {
+                "unit": "px",
+                "size": 12
+              },
+              "typography_font_weight": "500",
+              "typography_letter_spacing": {
+                "unit": "em",
+                "size": 0.3
+              },
+              "typography_text_transform": "uppercase"
+            }
+          },
+          {
+            "id": "wid_about_spacer1",
+            "elType": "widget",
+            "widgetType": "spacer",
+            "settings": {
+              "space": {
+                "unit": "px",
+                "size": 18
+              }
+            }
+          },
+          {
+            "id": "wid_about_h2",
+            "elType": "widget",
+            "widgetType": "heading",
+            "settings": {
+              "title": "Peças impressas em 3D",
+              "align": "left",
+              "header_size": "h2",
+              "title_color": "#33604e",
+              "typography_typography": "custom",
+              "typography_font_family": "Work Sans",
+              "typography_font_size": {
+                "unit": "px",
+                "size": 30
+              },
+              "typography_font_weight": "300",
+              "typography_letter_spacing": {
+                "unit": "em",
+                "size": 0.16
+              },
+              "typography_text_transform": "uppercase"
+            }
+          },
+          {
+            "id": "wid_about_spacer2",
+            "elType": "widget",
+            "widgetType": "spacer",
+            "settings": {
+              "space": {
+                "unit": "px",
+                "size": 24
+              }
+            }
+          },
+          {
+            "id": "wid_about_text",
+            "elType": "widget",
+            "widgetType": "text-editor",
+            "settings": {
+              "editor": "<p style=\"color:#6f7f77;font-size:15px;line-height:1.9;margin-bottom:20px;\">Alegre a sua casa e proteja o planeta com as nossas peças impressas em 3D. Vasos, candeeiros, mimos e objectos diferentes &mdash; desenhados por artistas e produzidos apenas com plásticos reciclados.</p><p style=\"color:#6f7f77;font-size:15px;line-height:1.9;\">Cada peça é feita por encomenda, na cor que escolher, sem stock parado e sem desperdício.</p>"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "sec_products_003",
+    "elType": "section",
+    "settings": {
+      "background_background": "classic",
+      "background_color": "#f4eddb",
+      "padding": {
+        "unit": "px",
+        "top": "90",
+        "right": "40",
+        "bottom": "100",
+        "left": "40",
+        "isLinked": false
+      },
+      "layout": "boxed"
+    },
+    "elements": [
+      {
+        "id": "col_products_title",
+        "elType": "column",
+        "settings": {
+          "_column_size": 100
+        },
+        "elements": [
+          {
+            "id": "wid_products_h2",
+            "elType": "widget",
+            "widgetType": "heading",
+            "settings": {
+              "title": "Destaques",
+              "align": "center",
+              "header_size": "h2",
+              "title_color": "#33604e",
+              "typography_typography": "custom",
+              "typography_font_family": "Work Sans",
+              "typography_font_size": {
+                "unit": "px",
+                "size": 24
+              },
+              "typography_font_weight": "300",
+              "typography_letter_spacing": {
+                "unit": "em",
+                "size": 0.3
+              },
+              "typography_text_transform": "uppercase"
+            }
+          },
+          {
+            "id": "wid_products_spacer",
+            "elType": "widget",
+            "widgetType": "spacer",
+            "settings": {
+              "space": {
+                "unit": "px",
+                "size": 50
+              }
+            }
+          },
+          {
+            "id": "inner_products",
+            "elType": "section",
+            "isInner": true,
+            "settings": {
+              "structure": "30",
+              "gap": "wide"
+            },
+            "elements": [
+              {
+                "id": "col_p1",
+                "elType": "column",
+                "settings": {
+                  "_column_size": 33
+                },
+                "elements": [
+                  {
+                    "id": "wid_p1_img",
+                    "elType": "widget",
+                    "widgetType": "image",
+                    "settings": {
+                      "image": {
+                        "url": "{{THEME_URI}}/assets/img/p1.jpg",
+                        "id": ""
+                      },
+                      "image_size": "large",
+                      "align": "center"
+                    }
+                  },
+                  {
+                    "id": "wid_p1_name",
+                    "elType": "widget",
+                    "widgetType": "heading",
+                    "settings": {
+                      "title": "Conjunto Vibrante",
+                      "align": "center",
+                      "header_size": "h4",
+                      "title_color": "#33604e",
+                      "typography_typography": "custom",
+                      "typography_font_family": "Work Sans",
+                      "typography_font_size": {
+                        "unit": "px",
+                        "size": 14
+                      },
+                      "typography_font_weight": "400",
+                      "typography_letter_spacing": {
+                        "unit": "em",
+                        "size": 0.2
+                      },
+                      "typography_text_transform": "uppercase"
+                    }
+                  },
+                  {
+                    "id": "wid_p1_price",
+                    "elType": "widget",
+                    "widgetType": "text-editor",
+                    "settings": {
+                      "editor": "<p style=\"text-align:center;color:#6f7f77;font-size:14px;letter-spacing:0.05em;margin:8px 0 20px;\">189,99&euro;</p>"
+                    }
+                  },
+                  {
+                    "id": "wid_p1_btn",
+                    "elType": "widget",
+                    "widgetType": "button",
+                    "settings": {
+                      "text": "ADICIONAR AO CESTO",
+                      "link": {
+                        "url": "/loja/",
+                        "is_external": false,
+                        "nofollow": false
+                      },
+                      "align": "center",
+                      "background_background": "classic",
+                      "background_color": "rgba(255,255,255,0)",
+                      "button_text_color": "#33604e",
+                      "border_border": "solid",
+                      "border_width": {
+                        "unit": "px",
+                        "top": "1",
+                        "right": "1",
+                        "bottom": "1",
+                        "left": "1",
+                        "isLinked": true
+                      },
+                      "border_color": "#c9bfa3",
+                      "border_radius": {
+                        "unit": "px",
+                        "top": "0",
+                        "right": "0",
+                        "bottom": "0",
+                        "left": "0",
+                        "isLinked": true
+                      },
+                      "text_padding": {
+                        "unit": "px",
+                        "top": "12",
+                        "right": "24",
+                        "bottom": "12",
+                        "left": "24",
+                        "isLinked": false
+                      },
+                      "typography_typography": "custom",
+                      "typography_font_family": "Work Sans",
+                      "typography_font_size": {
+                        "unit": "px",
+                        "size": 10
+                      },
+                      "typography_font_weight": "500",
+                      "typography_letter_spacing": {
+                        "unit": "em",
+                        "size": 0.2
+                      },
+                      "typography_text_transform": "uppercase"
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "col_p2",
+                "elType": "column",
+                "settings": {
+                  "_column_size": 33
+                },
+                "elements": [
+                  {
+                    "id": "wid_p2_img",
+                    "elType": "widget",
+                    "widgetType": "image",
+                    "settings": {
+                      "image": {
+                        "url": "{{THEME_URI}}/assets/img/p2.jpg",
+                        "id": ""
+                      },
+                      "image_size": "large",
+                      "align": "center"
+                    }
+                  },
+                  {
+                    "id": "wid_p2_name",
+                    "elType": "widget",
+                    "widgetType": "heading",
+                    "settings": {
+                      "title": "Vulcano",
+                      "align": "center",
+                      "header_size": "h4",
+                      "title_color": "#33604e",
+                      "typography_typography": "custom",
+                      "typography_font_family": "Work Sans",
+                      "typography_font_size": {
+                        "unit": "px",
+                        "size": 14
+                      },
+                      "typography_font_weight": "400",
+                      "typography_letter_spacing": {
+                        "unit": "em",
+                        "size": 0.2
+                      },
+                      "typography_text_transform": "uppercase"
+                    }
+                  },
+                  {
+                    "id": "wid_p2_price",
+                    "elType": "widget",
+                    "widgetType": "text-editor",
+                    "settings": {
+                      "editor": "<p style=\"text-align:center;color:#6f7f77;font-size:14px;letter-spacing:0.05em;margin:8px 0 20px;\">49,99&euro;</p>"
+                    }
+                  },
+                  {
+                    "id": "wid_p2_btn",
+                    "elType": "widget",
+                    "widgetType": "button",
+                    "settings": {
+                      "text": "ADICIONAR AO CESTO",
+                      "link": {
+                        "url": "/loja/",
+                        "is_external": false,
+                        "nofollow": false
+                      },
+                      "align": "center",
+                      "background_background": "classic",
+                      "background_color": "rgba(255,255,255,0)",
+                      "button_text_color": "#33604e",
+                      "border_border": "solid",
+                      "border_width": {
+                        "unit": "px",
+                        "top": "1",
+                        "right": "1",
+                        "bottom": "1",
+                        "left": "1",
+                        "isLinked": true
+                      },
+                      "border_color": "#c9bfa3",
+                      "border_radius": {
+                        "unit": "px",
+                        "top": "0",
+                        "right": "0",
+                        "bottom": "0",
+                        "left": "0",
+                        "isLinked": true
+                      },
+                      "text_padding": {
+                        "unit": "px",
+                        "top": "12",
+                        "right": "24",
+                        "bottom": "12",
+                        "left": "24",
+                        "isLinked": false
+                      },
+                      "typography_typography": "custom",
+                      "typography_font_family": "Work Sans",
+                      "typography_font_size": {
+                        "unit": "px",
+                        "size": 10
+                      },
+                      "typography_font_weight": "500",
+                      "typography_letter_spacing": {
+                        "unit": "em",
+                        "size": 0.2
+                      },
+                      "typography_text_transform": "uppercase"
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "col_p3",
+                "elType": "column",
+                "settings": {
+                  "_column_size": 33
+                },
+                "elements": [
+                  {
+                    "id": "wid_p3_img",
+                    "elType": "widget",
+                    "widgetType": "image",
+                    "settings": {
+                      "image": {
+                        "url": "{{THEME_URI}}/assets/img/p3.jpg",
+                        "id": ""
+                      },
+                      "image_size": "large",
+                      "align": "center"
+                    }
+                  },
+                  {
+                    "id": "wid_p3_name",
+                    "elType": "widget",
+                    "widgetType": "heading",
+                    "settings": {
+                      "title": "Garrafa Larga",
+                      "align": "center",
+                      "header_size": "h4",
+                      "title_color": "#33604e",
+                      "typography_typography": "custom",
+                      "typography_font_family": "Work Sans",
+                      "typography_font_size": {
+                        "unit": "px",
+                        "size": 14
+                      },
+                      "typography_font_weight": "400",
+                      "typography_letter_spacing": {
+                        "unit": "em",
+                        "size": 0.2
+                      },
+                      "typography_text_transform": "uppercase"
+                    }
+                  },
+                  {
+                    "id": "wid_p3_price",
+                    "elType": "widget",
+                    "widgetType": "text-editor",
+                    "settings": {
+                      "editor": "<p style=\"text-align:center;font-size:14px;letter-spacing:0.05em;margin:8px 0 20px;\"><span style=\"text-decoration:line-through;color:#a9b0aa;\">34,99&euro;</span> <span style=\"color:#c0563b;font-weight:600;\">29,99&euro;</span></p>"
+                    }
+                  },
+                  {
+                    "id": "wid_p3_btn",
+                    "elType": "widget",
+                    "widgetType": "button",
+                    "settings": {
+                      "text": "ADICIONAR AO CESTO",
+                      "link": {
+                        "url": "/loja/",
+                        "is_external": false,
+                        "nofollow": false
+                      },
+                      "align": "center",
+                      "background_background": "classic",
+                      "background_color": "rgba(255,255,255,0)",
+                      "button_text_color": "#33604e",
+                      "border_border": "solid",
+                      "border_width": {
+                        "unit": "px",
+                        "top": "1",
+                        "right": "1",
+                        "bottom": "1",
+                        "left": "1",
+                        "isLinked": true
+                      },
+                      "border_color": "#c9bfa3",
+                      "border_radius": {
+                        "unit": "px",
+                        "top": "0",
+                        "right": "0",
+                        "bottom": "0",
+                        "left": "0",
+                        "isLinked": true
+                      },
+                      "text_padding": {
+                        "unit": "px",
+                        "top": "12",
+                        "right": "24",
+                        "bottom": "12",
+                        "left": "24",
+                        "isLinked": false
+                      },
+                      "typography_typography": "custom",
+                      "typography_font_family": "Work Sans",
+                      "typography_font_size": {
+                        "unit": "px",
+                        "size": 10
+                      },
+                      "typography_font_weight": "500",
+                      "typography_letter_spacing": {
+                        "unit": "em",
+                        "size": 0.2
+                      },
+                      "typography_text_transform": "uppercase"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "sec_club_004",
+    "elType": "section",
+    "settings": {
+      "background_background": "classic",
+      "background_color": "#efe7d0",
+      "padding": {
+        "unit": "px",
+        "top": "90",
+        "right": "40",
+        "bottom": "90",
+        "left": "40",
+        "isLinked": false
+      },
+      "layout": "boxed"
+    },
+    "elements": [
+      {
+        "id": "col_club_001",
+        "elType": "column",
+        "settings": {
+          "_column_size": 100
+        },
+        "elements": [
+          {
+            "id": "wid_club_h2",
+            "elType": "widget",
+            "widgetType": "heading",
+            "settings": {
+              "title": "Clube Guebel",
+              "align": "center",
+              "header_size": "h2",
+              "title_color": "#33604e",
+              "typography_typography": "custom",
+              "typography_font_family": "Work Sans",
+              "typography_font_size": {
+                "unit": "px",
+                "size": 22
+              },
+              "typography_font_weight": "400",
+              "typography_letter_spacing": {
+                "unit": "em",
+                "size": 0.3
+              },
+              "typography_text_transform": "uppercase"
+            }
+          },
+          {
+            "id": "wid_club_spacer1",
+            "elType": "widget",
+            "widgetType": "spacer",
+            "settings": {
+              "space": {
+                "unit": "px",
+                "size": 20
+              }
+            }
+          },
+          {
+            "id": "wid_club_text",
+            "elType": "widget",
+            "widgetType": "text-editor",
+            "settings": {
+              "editor": "<p style=\"text-align:center;color:#6f7f77;font-size:15px;line-height:1.8;max-width:560px;margin:0 auto;\">Uma peça nova todos os meses, escolhida a dedo pelos nossos designers, com 20% de desconto em toda a loja e envio gratuito.</p>"
+            }
+          },
+          {
+            "id": "wid_club_spacer2",
+            "elType": "widget",
+            "widgetType": "spacer",
+            "settings": {
+              "space": {
+                "unit": "px",
+                "size": 32
+              }
+            }
+          },
+          {
+            "id": "wid_club_btn",
+            "elType": "widget",
+            "widgetType": "button",
+            "settings": {
+              "text": "QUERO ADERIR",
+              "link": {
+                "url": "/clube/",
+                "is_external": false,
+                "nofollow": false
+              },
+              "align": "center",
+              "background_background": "classic",
+              "background_color": "rgba(255,255,255,0)",
+              "button_text_color": "#33604e",
+              "border_border": "solid",
+              "border_width": {
+                "unit": "px",
+                "top": "1",
+                "right": "1",
+                "bottom": "1",
+                "left": "1",
+                "isLinked": true
+              },
+              "border_color": "#33604e",
+              "border_radius": {
+                "unit": "px",
+                "top": "0",
+                "right": "0",
+                "bottom": "0",
+                "left": "0",
+                "isLinked": true
+              },
+              "text_padding": {
+                "unit": "px",
+                "top": "14",
+                "right": "40",
+                "bottom": "14",
+                "left": "40",
+                "isLinked": false
+              },
+              "typography_typography": "custom",
+              "typography_font_family": "Work Sans",
+              "typography_font_size": {
+                "unit": "px",
+                "size": 11
+              },
+              "typography_font_weight": "500",
+              "typography_letter_spacing": {
+                "unit": "em",
+                "size": 0.24
+              },
+              "typography_text_transform": "uppercase"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "sec_contact_005",
+    "elType": "section",
+    "settings": {
+      "background_background": "classic",
+      "background_color": "#f4eddb",
+      "gap": "no",
+      "padding": {
+        "unit": "px",
+        "top": "0",
+        "right": "0",
+        "bottom": "0",
+        "left": "0",
+        "isLinked": true
+      },
+      "structure": "20"
+    },
+    "elements": [
+      {
+        "id": "col_contact_left",
+        "elType": "column",
+        "settings": {
+          "_column_size": 50,
+          "background_background": "classic",
+          "background_image": {
+            "url": "{{THEME_URI}}/assets/img/contact.jpg",
+            "id": ""
+          },
+          "background_position": "center center",
+          "background_size": "cover",
+          "min_height": {
+            "unit": "px",
+            "size": 640
+          }
+        },
+        "elements": []
+      },
+      {
+        "id": "col_contact_right",
+        "elType": "column",
+        "settings": {
+          "_column_size": 50,
+          "content_position": "center",
+          "padding": {
+            "unit": "px",
+            "top": "90",
+            "right": "70",
+            "bottom": "90",
+            "left": "70",
+            "isLinked": false
+          }
+        },
+        "elements": [
+          {
+            "id": "wid_contact_h2",
+            "elType": "widget",
+            "widgetType": "heading",
+            "settings": {
+              "title": "Falamos?",
+              "align": "left",
+              "header_size": "h2",
+              "title_color": "#33604e",
+              "typography_typography": "custom",
+              "typography_font_family": "Work Sans",
+              "typography_font_size": {
+                "unit": "px",
+                "size": 26
+              },
+              "typography_font_weight": "300",
+              "typography_letter_spacing": {
+                "unit": "em",
+                "size": 0.28
+              },
+              "typography_text_transform": "uppercase"
+            }
+          },
+          {
+            "id": "wid_contact_spacer",
+            "elType": "widget",
+            "widgetType": "spacer",
+            "settings": {
+              "space": {
+                "unit": "px",
+                "size": 32
+              }
+            }
+          },
+          {
+            "id": "wid_contact_form",
+            "elType": "widget",
+            "widgetType": "html",
+            "settings": {
+              "html": "<form data-guebel-contact class=\"guebel-hp-form\">\n  <div class=\"ghf-row\">\n    <input type=\"text\" name=\"name\" placeholder=\"O SEU NOME\" required>\n    <input type=\"email\" name=\"email\" placeholder=\"O SEU EMAIL\" required>\n  </div>\n  <input type=\"tel\" name=\"phone\" placeholder=\"O SEU TELEFONE\">\n  <input type=\"text\" name=\"message\" placeholder=\"A SUA MENSAGEM\" required>\n  <label class=\"ghf-consent\"><input type=\"checkbox\" name=\"consent\" value=\"1\" required> <span>Aceito a <a href=\"/privacidade/\">Política de Privacidade</a> e o tratamento dos meus dados para resposta a este contacto.</span></label>\n  <label class=\"ghf-consent\"><input type=\"checkbox\" name=\"marketing\" value=\"1\"> <span>Quero receber novidades e ofertas da Guebel por email.</span></label>\n  <button type=\"submit\">ENVIAR</button>\n</form>\n<style>\n.guebel-hp-form{display:flex;flex-direction:column;gap:22px;max-width:460px;}\n.guebel-hp-form .ghf-row{display:flex;gap:26px;flex-wrap:wrap;}\n.guebel-hp-form .ghf-row input{flex:1 1 160px;}\n.guebel-hp-form input[type=text],.guebel-hp-form input[type=email],.guebel-hp-form input[type=tel]{border:none;border-bottom:1px solid #cfc6ac;background:transparent;padding:10px 0;font-family:'Work Sans',sans-serif;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#33604e;}\n.guebel-hp-form input::placeholder{color:#9aa39a;letter-spacing:0.2em;}\n.guebel-hp-form input:focus{outline:none;border-color:#33604e;}\n.guebel-hp-form .ghf-consent{display:flex;align-items:flex-start;gap:8px;font-family:'Work Sans',sans-serif;font-size:12px;line-height:1.5;color:#6f7f77;text-transform:none;letter-spacing:0;}\n.guebel-hp-form .ghf-consent input{margin-top:3px;flex-shrink:0;accent-color:#33604e;}\n.guebel-hp-form .ghf-consent a{color:#33604e;text-decoration:underline;}\n.guebel-hp-form button{align-self:flex-start;margin-top:10px;background:transparent;border:1px solid #33604e;color:#33604e;padding:14px 46px;font-family:'Work Sans',sans-serif;font-size:11px;font-weight:500;letter-spacing:0.28em;text-transform:uppercase;cursor:pointer;transition:opacity .3s;}\n.guebel-hp-form button:hover{opacity:.65;}\n</style>"
+            }
+          }
+        ]
+      }
+    ]
+  }
+]

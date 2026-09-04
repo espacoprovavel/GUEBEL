@@ -1,0 +1,119 @@
+[
+  {
+    "id": "sec_privacidade_hero",
+    "elType": "section",
+    "settings": {
+      "background_background": "classic",
+      "background_color": "#2d5a45",
+      "padding": {
+        "unit": "px",
+        "top": "120",
+        "right": "40",
+        "bottom": "120",
+        "left": "40",
+        "isLinked": false
+      },
+      "layout": "full_width"
+    },
+    "elements": [
+      {
+        "id": "col_privacidade_hero",
+        "elType": "column",
+        "settings": {
+          "_column_size": 100
+        },
+        "elements": [
+          {
+            "id": "wid_privacidade_eyebrow",
+            "elType": "widget",
+            "widgetType": "heading",
+            "settings": {
+              "title": "LEGAL",
+              "align": "center",
+              "header_size": "h6",
+              "title_color": "#c8a96e",
+              "typography_font_family": "Work Sans",
+              "typography_font_size": {
+                "unit": "px",
+                "size": 11
+              },
+              "typography_font_weight": "600",
+              "typography_letter_spacing": {
+                "unit": "px",
+                "size": 3
+              }
+            }
+          },
+          {
+            "id": "wid_privacidade_spacer1",
+            "elType": "widget",
+            "widgetType": "spacer",
+            "settings": {
+              "space": {
+                "unit": "px",
+                "size": 16
+              }
+            }
+          },
+          {
+            "id": "wid_privacidade_h1",
+            "elType": "widget",
+            "widgetType": "heading",
+            "settings": {
+              "title": "Política de Privacidade",
+              "align": "center",
+              "header_size": "h1",
+              "title_color": "#f5f0e0",
+              "typography_font_family": "Work Sans",
+              "typography_font_size": {
+                "unit": "px",
+                "size": 48
+              },
+              "typography_font_weight": "300",
+              "typography_letter_spacing": {
+                "unit": "em",
+                "size": 0.18
+              },
+              "typography_text_transform": "uppercase"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "sec_privacidade_content",
+    "elType": "section",
+    "settings": {
+      "background_background": "classic",
+      "background_color": "#f5f0e0",
+      "padding": {
+        "unit": "px",
+        "top": "80",
+        "right": "60",
+        "bottom": "80",
+        "left": "60",
+        "isLinked": false
+      }
+    },
+    "elements": [
+      {
+        "id": "col_privacidade_content",
+        "elType": "column",
+        "settings": {
+          "_column_size": 100
+        },
+        "elements": [
+          {
+            "id": "wid_privacidade_text",
+            "elType": "widget",
+            "widgetType": "text-editor",
+            "settings": {
+              "editor": "<div style=\"max-width: 800px; margin: 0 auto;\">\n\n<h3 style=\"color: #2d5a45; font-family: 'Work Sans', serif; font-size: 22px; font-weight: 400; margin-bottom: 12px;\">1. Responsável pelo tratamento</h3>\n<p style=\"color: #7a8a82; font-size: 15px; line-height: 1.8; margin-bottom: 32px;\">A Guebel é responsável pelo tratamento dos dados pessoais recolhidos através deste website, em conformidade com o Regulamento Geral sobre a Protecção de Dados (RGPD).</p>\n\n<h3 style=\"color: #2d5a45; font-family: 'Work Sans', serif; font-size: 22px; font-weight: 400; margin-bottom: 12px;\">2. Dados recolhidos</h3>\n<p style=\"color: #7a8a82; font-size: 15px; line-height: 1.8; margin-bottom: 32px;\">Recolhemos os seguintes dados pessoais quando efectua uma compra ou cria uma conta: nome, email, morada de envio, número de telefone e dados de pagamento. Os dados de pagamento são processados directamente pelos nossos parceiros de pagamento e não são armazenados nos nossos servidores.</p>\n\n<h3 style=\"color: #2d5a45; font-family: 'Work Sans', serif; font-size: 22px; font-weight: 400; margin-bottom: 12px;\">3. Finalidade do tratamento</h3>\n<p style=\"color: #7a8a82; font-size: 15px; line-height: 1.8; margin-bottom: 32px;\">Os seus dados são utilizados para: processar e enviar encomendas, comunicar sobre o estado da encomenda, enviar newsletter (apenas com consentimento), cumprir obrigações legais e fiscais, e melhorar a sua experiência de compra.</p>\n\n<h3 style=\"color: #2d5a45; font-family: 'Work Sans', serif; font-size: 22px; font-weight: 400; margin-bottom: 12px;\">4. Cookies</h3>\n<p style=\"color: #7a8a82; font-size: 15px; line-height: 1.8; margin-bottom: 32px;\">Este site utiliza cookies essenciais para o funcionamento da loja (carrinho, sessão) e cookies analíticos (Google Analytics) para compreender como os visitantes utilizam o site. Pode gerir as suas preferências de cookies a qualquer momento.</p>\n\n<h3 style=\"color: #2d5a45; font-family: 'Work Sans', serif; font-size: 22px; font-weight: 400; margin-bottom: 12px;\">5. Os seus direitos</h3>\n<p style=\"color: #7a8a82; font-size: 15px; line-height: 1.8; margin-bottom: 32px;\">Ao abrigo do RGPD, tem direito a: aceder aos seus dados pessoais, rectificar dados incorrectos, solicitar a eliminação dos seus dados, opor-se ao tratamento, e portabilidade dos dados. Para exercer estes direitos, contacte-nos para geral@guebel.pt.</p>\n\n<h3 style=\"color: #2d5a45; font-family: 'Work Sans', serif; font-size: 22px; font-weight: 400; margin-bottom: 12px;\">6. Conservação dos dados</h3>\n<p style=\"color: #7a8a82; font-size: 15px; line-height: 1.8; margin-bottom: 32px;\">Os dados pessoais são conservados durante o período necessário para cumprir as finalidades para as quais foram recolhidos, e pelo período exigido por lei para efeitos fiscais e contabilísticos.</p>\n\n<h3 style=\"color: #2d5a45; font-family: 'Work Sans', serif; font-size: 22px; font-weight: 400; margin-bottom: 12px;\">7. Contacto</h3>\n<p style=\"color: #7a8a82; font-size: 15px; line-height: 1.8;\">Para questões relacionadas com a protecção de dados, contacte-nos através do email geral@guebel.pt. Tem também o direito de apresentar uma reclamação junto da CNPD (Comissão Nacional de Protecção de Dados).</p>\n\n</div>"
+            }
+          }
+        ]
+      }
+    ]
+  }
+]
